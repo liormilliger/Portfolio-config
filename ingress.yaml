@@ -1,15 +1,15 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: crm-ingress
+  name: blog-app-ingress
   namespace: default
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   ingressClassName: nginx
   rules:
-  - host: liormcrm.ddnsking.com
-    http:
+  # - host: http://a6aef4568c9284db79e26b001519f01f-1086666912.us-east-1.elb.amazonaws.com/
+  - http:
       paths:
       - path: /
         pathType: Prefix
@@ -17,4 +17,4 @@ spec:
           service:
             name: blog-service
             port:
-              number: 80
+              number: 5000

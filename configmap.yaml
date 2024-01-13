@@ -3,7 +3,8 @@ kind: ConfigMap
 metadata:
   name: blog-conf
 data:
-  MONGODB_URI: "mongodb://mongo-0.mongodb.default.svc.cluster.local:27017,mongo-1.mongodb.default.svc.cluster.local:27017,mongo-2.mongodb.default.svc.cluster.local:27017/blog"
+  # MONGODB_URI: "mongodb://mongo-0.mongodb.default.svc.cluster.local:27017,mongo-1.mongodb.default.svc.cluster.local:27017,mongo-2.mongodb.default.svc.cluster.local:27017/blog"
   # MONGODB_URI: "mongodb://mongo-0.mongodb:27017,mongo-1.mongodb:27017,mongo-2.mongodb:27017/test"
+  MONGO_URI: "mongodb://mongo-0.mongodb.default.svc.cluster.local:27017/blog"
   PERSISTENCE: "true"
   LOG_LEVEL: "info"
