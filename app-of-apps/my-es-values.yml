@@ -7,7 +7,7 @@ kibana:
       http: 5601
     ## @param service.type Kubernetes Service type
     ##
-    type: LoadBalancer
+    type: ClusterIP
 
 # Elasticsearch values
 global:
