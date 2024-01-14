@@ -1,14 +1,15 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: cert-manager
-  namespace: argocd
+  name: blog-app
+  namespace: blog-app
 spec:
   project: default
   source:
-    repoURL: https://charts.jetstack.io
-    chart: cert-manager
-    targetRevision: "v1.13.3"
+    repoURL: https://github.com/liormilliger/Portfolio-config.git
+    # chart: blog-app
+    targetRevision: HEAD
+    path: "blog-app"
   destination: 
     server: https://kubernetes.default.svc
     namespace: default

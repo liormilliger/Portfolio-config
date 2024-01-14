@@ -5,9 +5,9 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: git@github.com:liormilliger/Argo-CRM.git
+    repoURL: git@github.com:liormilliger/Portfolio-config.git
     targetRevision: HEAD
-    path: "CRM6-Infra-apps/apps-folder"
+    path: "app-of-apps"
   destination: 
     server: https://kubernetes.default.svc
     namespace: default
