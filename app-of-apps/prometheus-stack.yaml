@@ -9,6 +9,9 @@ spec:
     repoURL: https://prometheus-community.github.io/helm-charts
     chart: prometheus-community
     targetRevision: "v0.70.0"
+    helm:
+      valueFiles:
+        - files/prometheus-values.yaml
     # https://artifacthub.io/packages/helm/prometheus-community/kube-prometheus-stack
   destination: 
     server: https://kubernetes.default.svc

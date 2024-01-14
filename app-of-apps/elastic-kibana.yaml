@@ -6,9 +6,13 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://charts.jetstack.io
-    chart: cert-manager
-    targetRevision: "v1.13.3"
+    repoURL: https://github.com/bitnami/charts.git
+    path: "/bitnami/elasticsearch"
+    # chart: cert-manager
+    targetRevision: HEAD
+    helm:
+      valueFiles:
+        - files/my-es-values.yml
   destination: 
     server: https://kubernetes.default.svc
     namespace: default

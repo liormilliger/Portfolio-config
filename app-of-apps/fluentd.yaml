@@ -9,6 +9,9 @@ spec:
     repoURL: https://fluent.github.io/helm-charts
     chart: fluent
     targetRevision: "v2.2.1"
+    helm:
+      valueFiles:
+        - files/fluentd-values.yaml
   destination: 
     server: https://kubernetes.default.svc
     namespace: default
