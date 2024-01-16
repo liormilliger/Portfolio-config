@@ -1,0 +1,60 @@
+____________________/ CHECK SECURITY GROUP IPS \______________
+
+Terraform/
+security.tf - ingress - PORTS
+variables.tf - check the IPS
+
+-------------------------[ CLUSTER ]---------------------------------------
+After the cluster is up - we use this command to enable working with kubectl:
+
+aws eks --region us-east-1 update-kubeconfig --name blog-cluster
+
+-------------------------------[ HELM-INSTALL ]--------------------------------------------
+
+helm install blog-app blog-app
+
+- - - - - - [ To install helm elasticsearch ] - - - - - -
+[STAGE1]
+kubectl apply -f storage-class-csi.yaml
+
+[STAGE2]
+#kubectl create secret generic aws-secret \
+#--from-literal "key_id=${AWS_ACCESS_KEY_ID}" \
+#--from-literal "access_key=${AWS_SECRET_ACCESS_KEY}"
+
+sh ./secret-aws-ebs-csi-driver.sh
+
+[STAGE3]
+helm install aws-ebs-csi-driver aws-ebs-csi-driver/aws-ebs-csi-driver
+
+[STAGE4]
+helm install -n elastic --create-namespace elasticsearch bitnami/elasticsearch -f app-of-apps/files/my-es-values.yml
+- - - - - - - - - - - - - - - - 
+
+[[ Make sure to create fluentd namespace and install app-of-apps fluentd-cm.yml before installing fluentd helm]]
+helm install -n fluentd fluentd bitnami/fluentd -f app-of-apps/files/fluentd-values.yaml 
+helm upgrade --install -n fluentd fluentd bitnami/fluentd -f app-of-apps/files/fluentd-values.yaml 
+
+helm install -n kube-prometheus-stack --create-namespace kube-prometheus-stack prometheus-community/kube-prometheus-stack -f app-of-apps/files/prometheus-values.yaml
+[[Make sure to install app-of-apps/files/prometheus-service-monitor.yaml]]
+
+-------------------------------[ PORT-FORWARDING ]--------------------------------------------
+
+JENKINS - 8080 (on its own instance)
+ArgoCD - 8282
+kubectl port-forward -n argocd service/argocd-server 8282:80
+KIBANA - 8585
+kubectl port-forward -n elastic service/elasticsearch-kibana 8585:5601
+PROMETHEUS - 9090
+kubectl port-forward -n kube-prometheus-stack service/kube-prometheus-stack-grafana 9090:80
+
+-------------------------------[ ARGO APP-OF-APPS INSTALL ]--------------------------------------------
+
+kubernetes/
+kubectl apply -f app-of-apps.yaml
+
+-------------------------[ ECR-LOGIN ]---------------------------------------------
+
+aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 644435390668.dkr.ecr.us-east-1.amazonaws.com
+
+
