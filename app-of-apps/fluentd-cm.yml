@@ -25,110 +25,32 @@ data:
     ## 01_sources.conf:
     # Gather the logs from the containers running in the cluster
     <source>
-      @id fluentd-containers.log
-      @type tail
+      type tail
       path /var/log/containers/*.log
-      pos_file /var/log/containers.log.pos
-      tag raw.kubernetes.*
+      pos_file /var/log/es-containers.log.pos
+      time_format %Y-%m-%dT%H:%M:%S.%N
+      tag kubernetes.*
+      format json
       read_from_head true
-      <parse>
-        @type multi_format
-        <pattern>
-          format json
-          time_key time
-          time_format %Y-%m-%dT%H:%M:%S.%NZ
-        </pattern>
-        <pattern>
-          format /^(?<time>.+) (?<stream>stdout|stderr) [^ ]* (?<log>.*)$/
-          time_format %Y-%m-%dT%H:%M:%S.%N%:z
-        </pattern>
-      </parse>
+      keep_time_key true
     </source>
 
-    ## 02_filters.conf:
-    # Detect exceptions in the log output and forward them as one log entry.
-    <match raw.kubernetes.**>
-      @id raw.kubernetes
-      @type detect_exceptions
-      remove_tag_prefix raw
-      message log
-      stream stream
-      multiline_flush_interval 5
-      max_bytes 500000
-      max_lines 1000
-    </match>
-
-    # Concatenate multi-line logs
-    <filter **>
-      @id filter_concat
-      @type concat
-      key message
-      multiline_end_regexp /\n$/
-      separator ""
-      timeout_label @NORMAL
-      flush_interval 5
-    </filter>
-
-    # Enriches records with Kubernetes metadata
     <filter kubernetes.**>
-      @id filter_kubernetes_metadata
-      @type kubernetes_metadata
+      type kubernetes_metadata
     </filter>
 
-    # Fixes json fields in Elasticsearch
-    <filter kubernetes.**>
-      @id filter_parser
-      @type parser
-      key_name log
-      reserve_time true
-      reserve_data true
-      remove_key_name_field true
-      <parse>
-        @type multi_format
-        <pattern>
-          format json
-        </pattern>
-        <pattern>
-          format none
-        </pattern>
-      </parse>
-    </filter>
-
-    ## 04_outputs.conf:
-    # handle timeout log lines from concat plugin
     <match **>
-      @type relabel
-      @label @NORMAL
-    </match>
-
-    <label @NORMAL>
-    <match **>
-      @id elasticsearch
-      @type elasticsearch
-      @log_level info
+      type elasticsearch
+      log_level info
       include_tag_key true
       host "#{ENV['ELASTICSEARCH_HOST']}"
       port "#{ENV['ELASTICSEARCH_PORT']}"
-      path ""
-      scheme http
-      ssl_verify true
-      ssl_version TLSv1_2
-      type_name _doc
       logstash_format true
-      logstash_prefix logstash
-      reconnect_on_error true
-      <buffer>
-        @type file
-        path /var/log/fluentd-buffers/kubernetes.system.buffer
-        flush_mode interval
-        retry_type exponential_backoff
-        flush_thread_count 2
-        flush_interval 5s
-        retry_forever
-        retry_max_interval 30
-        chunk_limit_size 2M
-        queue_limit_length 8
-        overflow_action block
-      </buffer>
+      flush_interval 5s
+      # Never wait longer than 5 minutes between retries.
+      max_retry_wait 60
+      # Disable the limit on the number of retries (retry forever).
+      disable_retry_limit
+      time_key time
+      reload_connections false
     </match>
-    </label>

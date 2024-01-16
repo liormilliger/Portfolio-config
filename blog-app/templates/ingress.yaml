@@ -3,6 +3,7 @@ kind: Ingress
 metadata:
   name: blog-app-ingress
   namespace: default
+  # namespace: app
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
