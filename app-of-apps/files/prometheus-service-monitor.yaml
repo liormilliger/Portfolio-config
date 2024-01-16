@@ -1,15 +1,15 @@
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
-  name: blog-app-SM
+  name: blog-app-service-monitor
 spec:
   selector:
     matchLabels:
       app: blog
   endpoints:
-  - port: http
+  - port: "5000"
     path: /metrics
-  # namespaceSelector:
-  #   matchNames:
-  #   - default
+  namespaceSelector:
+    matchNames:
+    - default
     

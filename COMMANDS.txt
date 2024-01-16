@@ -35,8 +35,11 @@ helm install -n elastic --create-namespace elasticsearch bitnami/elasticsearch -
 helm install -n fluentd fluentd bitnami/fluentd -f app-of-apps/files/fluentd-values.yaml 
 helm upgrade --install -n fluentd fluentd bitnami/fluentd -f app-of-apps/files/fluentd-values.yaml 
 
-helm install -n kube-prometheus-stack --create-namespace kube-prometheus-stack prometheus-community/kube-prometheus-stack -f app-of-apps/files/prometheus-values.yaml
 [[Make sure to install app-of-apps/files/prometheus-service-monitor.yaml]]
+helm install -n kube-prometheus-stack --create-namespace kube-prometheus-stack prometheus-community/kube-prometheus-stack -f app-of-apps/files/prometheus-values.yaml
+helm uninstall -n kube-prometheus-stack kube-prometheus-stack
+
+https://grafana.com/grafana/dashboards/
 
 -------------------------------[ PORT-FORWARDING ]--------------------------------------------
 
