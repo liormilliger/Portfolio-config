@@ -3,6 +3,8 @@ kind: Service
 metadata:
   name: blog-service
   # namespace: app
+  labels:
+    app: blog
 spec:
   selector:
     app: blog
@@ -11,3 +13,4 @@ spec:
     - protocol: TCP
       port: 5000
       name: http
+      targetPort: webapp

@@ -13,3 +13,9 @@ prometheus:
 grafana:
   persistence:
     enabled: true
+
+additionalScrapeConfigs:
+  - job_name: 'python_application'
+    scrape_interval: 15s
+    static_configs:
+      - targets: ['blog-service:5000', 'mongodb:27017']

@@ -14,12 +14,18 @@ spec:
     metadata:
       labels:
         app: blog
+      # annotations:
+      #   prometheus.io/scrape: "true"
+      #   prometheus.io.scheme: "http"
+      #   prometheus.io/path: "/metrics"
+      #   prometheus.io/port: "5000"
     spec:
       containers:
       - name: blog
-        image: 644435390668.dkr.ecr.us-east-1.amazonaws.com/liorm-portfolio:1.0.51
+        image: 644435390668.dkr.ecr.us-east-1.amazonaws.com/liorm-portfolio:1.0.53
         envFrom:
         - configMapRef:
             name: blog-conf
         ports:
         - containerPort: 5000
+          name: webapp

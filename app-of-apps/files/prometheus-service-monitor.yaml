@@ -2,13 +2,17 @@ apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
   name: blog-app-service-monitor
+  namespace: kube-prometheus-stack
+  labels:
+    release: prometheus
 spec:
   selector:
     matchLabels:
       app: blog
   endpoints:
-  - port: "5000"
+  - port: http
     path: /metrics
+    targetPort: 5000
   namespaceSelector:
     matchNames:
     - default
