@@ -13,9 +13,9 @@ spec:
     # repoURL: https://github.com/bitnami/charts.git
     # path: "bitnami/elasticsearch"
     # targetRevision: HEAD
-    # helm:
-    #   valueFiles:
-    #     - /app-of-apps/files/my-es-values.yml
+    helm:
+      valueFiles:
+        - /app-of-apps/files/my-es-values.yml
   destination: 
     server: https://kubernetes.default.svc
     namespace: elastic
