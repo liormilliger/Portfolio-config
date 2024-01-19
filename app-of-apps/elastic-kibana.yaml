@@ -9,7 +9,7 @@ spec:
     repoURL: https://helm.elastic.co
     path: "elastic"
     chart: "elasticsearch"
-    targetRevision: "version 8.5.1"
+    targetRevision: "8.5.1"
     # repoURL: https://github.com/bitnami/charts.git
     # path: "bitnami/elasticsearch"
     # targetRevision: HEAD
