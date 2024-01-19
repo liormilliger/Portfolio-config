@@ -1,14 +1,14 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: elasticsearch
+  name: kibana
   namespace: argocd
 spec:
   project: default
   source:
     repoURL: https://helm.elastic.co
     path: "elastic"
-    chart: "elasticsearch"
+    chart: "kibana"
     targetRevision: "8.5.1"
     # repoURL: https://github.com/bitnami/charts.git
     # path: "bitnami/elasticsearch"
