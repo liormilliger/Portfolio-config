@@ -8,11 +8,10 @@ spec:
   source:
     repoURL: https://github.com/bitnami/charts.git
     path: "/bitnami/elasticsearch"
-    # chart: cert-manager
     targetRevision: HEAD
     helm:
       valueFiles:
-        - files/my-es-values.yml
+        - /app-of-apps/files/my-es-values.yml
   destination: 
     server: https://kubernetes.default.svc
     namespace: default
