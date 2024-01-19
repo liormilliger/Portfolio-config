@@ -6,7 +6,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: git@github.com:liormilliger/Portfolio-config.git
+    repoURL: git@github.com:liormilliger/Portfolio-app.git
     # chart: blog-app
     # targetRevision: HEAD
     path: "blog-app"
