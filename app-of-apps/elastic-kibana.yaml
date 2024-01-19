@@ -7,7 +7,7 @@ spec:
   project: default
   source:
     repoURL: https://github.com/bitnami/charts.git
-    path: "/bitnami/elasticsearch"
+    path: "bitnami/elasticsearch"
     targetRevision: HEAD
     helm:
       valueFiles:
