@@ -7,7 +7,7 @@ spec:
   project: default
   source:
     repoURL: https://fluent.github.io/helm-charts
-    chart: fluent
+    chart: argocd
     targetRevision: "v2.2.1"
     helm:
       valueFiles:
