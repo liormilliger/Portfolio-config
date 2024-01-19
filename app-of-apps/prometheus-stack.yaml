@@ -15,7 +15,7 @@ spec:
     # https://artifacthub.io/packages/helm/prometheus-community/kube-prometheus-stack
   destination: 
     server: https://kubernetes.default.svc
-    namespace: default
+    namespace: kube-prometheus-stack
 
   syncPolicy:
     syncOptions:
