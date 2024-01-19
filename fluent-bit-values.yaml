@@ -203,8 +203,8 @@ resources: {}
 
 ## only available if kind is Deployment
 ingress:
-  enabled: true
-  ingressClassName: "nginx"
+  enabled: false
+  ingressClassName: ""
   annotations: {}
   #  kubernetes.io/ingress.class: nginx
   #  kubernetes.io/tls-acme: "true"

@@ -53,6 +53,10 @@ kubectl port-forward -n kube-prometheus-stack service/kube-prometheus-stack-graf
 
 -------------------------------[ ARGO APP-OF-APPS INSTALL ]--------------------------------------------
 
+ArgoCD Initialization:
+Connect REPO - git@github.com:liormilliger/Portfolio-config.git
+SSH for GitHub - cat ~/.ssh/github_argocd_ssh
+kubectl apply -f app-of-apps.yaml
 kubernetes/
 kubectl apply -f app-of-apps.yaml
 
