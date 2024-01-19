@@ -19,7 +19,7 @@ spec:
         - ./app-of-apps/files/my-es-values.yml
   destination: 
     server: https://kubernetes.default.svc
-    namespace: elastic
+    namespace: default
 
   syncPolicy:
     syncOptions:
