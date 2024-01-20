@@ -16,8 +16,8 @@ echo "---===<{[ INSTALLING CSI-DRIVER HELM CHART]}>===---"
 
 helm install aws-ebs-csi-driver aws-ebs-csi-driver/aws-ebs-csi-driver
 
-# echo "---===<{[ INSTALLING BLOG-APP HELM CHART ]}>===---"
-# helm install blog-app blog-app
+echo "---===<{[ INSTALLING BLOG-APP HELM CHART ]}>===---"
+helm install blog-app blog-app
 
 # echo "---===<{[ INSTALLING APP-OF-APPS FOR ARGOCD]}>===---"
 # kubectl apply -f app-of-apps.yaml

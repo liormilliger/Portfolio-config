@@ -20,4 +20,10 @@ kubectl delete configmap -n fluentd fluentd-config
 
 echo "---===<{[ UNINSTALLING HELM CHART FOR FLUENTD ]}>===---"
 
-helm uninstall -n fluentd fluentd 
+helm uninstall -n fluentd fluentd
+
+# echo "---===<{[ INSTALLING BLOG-APP HELM CHART ]}>===---"
+# helm install blog-app blog-app
+
+# echo "---===<{[ DELETING APP-OF-APPS FOR ARGOCD]}>===---"
+# kubectl delete -n argocd application app-of-apps.yaml
