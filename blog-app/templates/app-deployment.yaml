@@ -14,12 +14,7 @@ spec:
     metadata:
       labels:
         app: blog
-      # annotations:
-      #   prometheus.io/scrape: "true"
-      #   prometheus.io.scheme: "http"
-      #   prometheus.io/path: "/metrics"
-      #   prometheus.io/port: "5000"
-    spec:
+     spec:
       containers:
       - name: blog
         image: 644435390668.dkr.ecr.us-east-1.amazonaws.com/liorm-portfolio:1.0.73

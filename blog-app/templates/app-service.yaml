@@ -5,6 +5,11 @@ metadata:
   # namespace: app
   labels:
     app: blog
+  annotations:
+    prometheus.io/scrape: "true"
+    prometheus.io.scheme: "http"
+    prometheus.io/path: "/metrics"
+    prometheus.io/port: "5000"
 spec:
   selector:
     app: blog
