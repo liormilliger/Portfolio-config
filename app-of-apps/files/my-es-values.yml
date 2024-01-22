@@ -1,15 +1,15 @@
 # config:
 #   allow_partial_search_results: true
 
-esJavaOpts: "-Xmx3g -Xms3g"
+# esJavaOpts: "-Xmx3g -Xms3g"
 
-resources:
-  requests:
-    cpu: "1000m"
-    memory: "4Gi"
-  limits:
-    cpu: "1000m"
-    memory: "4Gi"
+# resources:
+#   requests:
+#     cpu: "1000m"
+#     memory: "4Gi"
+#   limits:
+#     cpu: "1000m"
+#     memory: "4Gi"
 
 # Kibana values (subchart)
 kibana:
@@ -29,8 +29,10 @@ global:
 master:
   masterOnly: false
   replicaCount: 1
+  heapSize: 3g
 data:
-  replicaCount: 0
+  replicaCount: 2
+  heapSize: 3g
 coordinating:
   replicaCount: 0
 ingest:

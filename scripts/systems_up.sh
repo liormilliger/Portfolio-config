@@ -10,13 +10,14 @@ kubectl apply -f storage-class-csi.yaml
 
 echo "---===<{[ APPLYING SECRET Shhhhh ]}>===---"
 
-sh ./secret-aws-ebs-csi-driver.sh
+sh ./scripts/secret-aws-ebs-csi-driver.sh
 
 echo "---===<{[ INSTALLING CSI-DRIVER HELM CHART]}>===---"
 
 helm install aws-ebs-csi-driver aws-ebs-csi-driver/aws-ebs-csi-driver
 
 echo "---===<{[ INSTALLING BLOG-APP HELM CHART ]}>===---"
+
 helm install blog-app blog-app
 
 # echo "---===<{[ INSTALLING APP-OF-APPS FOR ARGOCD]}>===---"
