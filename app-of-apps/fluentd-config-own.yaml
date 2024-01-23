@@ -3,10 +3,7 @@ kind: ConfigMap
 metadata:
   name: fluentd-config
   namespace: fluentd
-      # <parse>
-      #   @type "/^(?<host>[^ ]*) [^ ]* [^ ]* \[(?<time>[^\]]*)\] \"(?<method>\S+)(?: +(?<path>[^\"]*?)(?: +\S*)?)?\" (?<code>[^ ]*) (?<size>[^ ]*)(?: \"(?<referer>[^\"]*)\" \"(?<agent>[^\"]*)\")?$"
-      #   time_format %d/%b/%Y:%H:%M:%S %z
-      # </parse>
+
 data:
   fluentd.conf: |
 
@@ -26,34 +23,31 @@ data:
       @type tail
       path /var/log/containers/*.log
       pos_file /var/log/fluentd-containers.log.pos
-      time_format %Y-%m-%dT%H:%M:%S.%NZ
+      time_format %d/%b/%Y %H:%M:%S %z
+      # time_format %Y-%m-%dT%H:%M:%S.%NZ
       tag kubernetes.*
       format json
-      format ruby
+      # format ruby
       read_from_head true
       <parse>
+        # @type regexp
         @type multi_format
         <pattern>
           format regexp
-          expression /^(?<time>\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}.\d{9}Z) (?<stream>stdout|stderr) [PF] (?<log>.*)$/
-          time_format %Y-%m-%dT%H:%M:%S.%NZ
+          expression /^(?<kubernetes_time>\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}.\d{9}Z) (?<stream>stdout|stderr) [PF] (?<host>\S+) - - \[(?<time>[^\]]+)\] "(?<request>[^"]+)" (?<status>\d+)( (?<size>\S+))?/
+          time_format %d/%b/%Y %H:%M:%S %z
+          # time_format %Y-%m-%dT%H:%M:%S.%NZ
         </pattern>
         <pattern>
           format regexp
           # expression /^(?<host>\S+) - - \[(?<time>[^\]]+)\] "(?<request>[^"]+)" (?<status>\d+) (?<size>\S+)/
           expression /^(?<host>\S+) - - \[(?<time>[^\]]+)\] "(?<request>[^"]+)" (?<status>\d+)( (?<size>\S+))?/
+          # expression /^(?<host>\S+) - - \[(?<time>[^\]]+)\] \\"(?<request>[^"]+)\\" (?<status>\d+)( (?<size>\S+))?/
           time_format %d/%b/%Y %H:%M:%S %z
+        
         </pattern>
       </parse>
     </source>
-
-    # <filter fluentd.log>
-    #   @type record_transformer
-    #   enable_ruby
-    #   <record>
-    #     log ${record["log"].gsub(/\"/, "\\\"")}
-    #   </record>
-    # </filter>
     
     <filter kubernetes.**>
       @id filter_kubernetes_metadata
@@ -87,37 +81,27 @@ data:
       @type null
     </match>
 
-    # <match fluentd.log>
-    #   @type elasticsearch
-    #   host elasticsearch.elastic.svc.cluster.local
-    #   port 9200
-    #   logstash_format true
-    #   logstash_prefix fluentd
-    #   include_tag_key true
-    #   tag_key @log_name
-    # </match>
     <match **>
-      @id elasticsearch
+      # @id elasticsearch
       @type elasticsearch
       @log_level info
-    #   include_tag_key true
+      include_tag_key true
       host elasticsearch.elastic.svc.cluster.local
       port 9200
-      scheme http
+      # scheme http
       # ssl_verify true
       # ssl_version TLSv1_2
     #   type_name _doc
       logstash_format true
       logstash_prefix logstash
-      # include_tag_key true
       # tag_key @log_name
-      <buffer>
-        flush_interval 1s
-      </buffer>
+      # <buffer>
+      #   flush_interval 1s
+      # </buffer>
     </match>
 
-    # <match kubernetes.**>
-    #   @type stdout
-    # </match>
+    <match kubernetes.**>
+      @type stdout
+    </match>
 
 

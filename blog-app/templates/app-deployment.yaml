@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: blog
-        image: 644435390668.dkr.ecr.us-east-1.amazonaws.com/liorm-portfolio:1.0.75
+        image: 644435390668.dkr.ecr.us-east-1.amazonaws.com/liorm-portfolio:1.0.6
         envFrom:
         - configMapRef:
             name: blog-conf
