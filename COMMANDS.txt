@@ -51,7 +51,11 @@ kubectl port-forward -n elastic service/elasticsearch-kibana 8585:5601
 PROMETHEUS - 9090
 kubectl port-forward -n kube-prometheus-stack service/kube-prometheus-stack-grafana 9090:80
 elasticsearch
+<<<<<<< HEAD
  
+=======
+
+>>>>>>> fluentd
 -------------------------------[ ARGO APP-OF-APPS INSTALL ]--------------------------------------------
 
 ArgoCD Initialization:

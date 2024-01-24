@@ -2,6 +2,6 @@
 
 echo "----====~~~~ {{{[[[<<< BOOTING ALL SCRIPTS >>>]]]}}}"
 
-sh ./systems_up.sh
+sh ./scripts/systems_up.sh
 
-sh ./install_efk.sh
+sh ./scripts/install_efk.sh

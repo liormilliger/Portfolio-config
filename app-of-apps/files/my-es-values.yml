@@ -16,8 +16,10 @@ global:
 master:
   masterOnly: false
   replicaCount: 1
+  heapSize: 3g
 data:
-  replicaCount: 0
+  replicaCount: 2
+  heapSize: 3g
 coordinating:
   replicaCount: 0
 ingest:

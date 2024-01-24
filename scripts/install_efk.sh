@@ -13,7 +13,7 @@ kubectl create ns fluentd
 
 echo "---===<{[ INSTALLING CONFIGMAP FOR FLUENTD ]}>===---"
 
-kubectl apply -f ./app-of-apps/fluentd-cm.yml
+kubectl apply -f app-of-apps/fluentd-cm.yml
 
 
 echo "---===<{[ INSTALLING HELM CHART FOR FLUENTD ]}>===---"
