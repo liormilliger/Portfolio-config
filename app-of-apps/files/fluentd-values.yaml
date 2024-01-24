@@ -15,8 +15,8 @@ forwarder:
   ##
   configMap: fluentd-config
   ## @param forwarder.extraEnvVars Extra environment variables to pass to the container
-  extraEnvVars:
-    - name: ELASTICSEARCH_HOST
-      value: "elasticsearch.elastic.svc.cluster.local"
-    - name: ELASTICSEARCH_PORT
-      value: "9200"
+  # extraEnvVars:
+  #   - name: ELASTICSEARCH_HOST
+  #     value: "elasticsearch.elastic.svc.cluster.local"
+  #   - name: ELASTICSEARCH_PORT
+  #     value: "9200"

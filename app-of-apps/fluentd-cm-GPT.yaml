@@ -22,9 +22,10 @@ data:
       @type tail
       path /var/log/containers/*.log
       pos_file /var/log/fluentd-containers.log.pos
+      # time_format %Y-%m-%d %H:%M:%S,%L
       time_format %Y-%m-%dT%H:%M:%S.%NZ
       tag kubernetes.*
-      format json
+      format none
       read_from_head true
     </source>
 
@@ -62,24 +63,24 @@ data:
       @type null
     </match>
 
-    # <match **>
-    #   @type elasticsearch
-    #   # @log_level info
-    #   host elasticsearch.elastic.svc.cluster.local
-    #   port 9200
-    #   # scheme http
-    #   # index_name fluentd
-    #   type_name _doc
-    #   logstash_format true
-    #   logstash_prefix logstash
-    #   include_tag_key true
-    #   tag_key @log_name
-    #   <buffer>
-    #     flush_interval 5s
-    #   </buffer>
-    # </match>
-
-    <match kubernetes.**>
-      @type stdout
+    <match kubernetes.*>
+      @type elasticsearch
+      @log_level info
+      host elasticsearch.elastic.svc.cluster.local
+      port 9200
+      scheme http
+      index_name fluentd
+      type_name _doc
+      logstash_format true
+      logstash_prefix logstash
+      include_tag_key true
+      tag_key @log_name
+      <buffer>
+        flush_interval 5s
+      </buffer>
     </match>
+
+    # <match kubernetes.**>
+    #   @type stdout
+    # </match>
 
