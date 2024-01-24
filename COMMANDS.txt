@@ -51,7 +51,7 @@ kubectl port-forward -n elastic service/elasticsearch-kibana 8585:5601
 PROMETHEUS - 9090
 kubectl port-forward -n kube-prometheus-stack service/kube-prometheus-stack-grafana 9090:80
 elasticsearch
-Kibana - 
+ 
 -------------------------------[ ARGO APP-OF-APPS INSTALL ]--------------------------------------------
 
 ArgoCD Initialization:
@@ -66,3 +66,13 @@ kubectl apply -f app-of-apps.yaml
 aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 644435390668.dkr.ecr.us-east-1.amazonaws.com
 
 
+=========================================================
+Operating Grafana UI
+
+1. In home page go to "Add your first Data Source"
+2. Choose prometheus
+3. Name it and hostname http://<svc/kube-prometheus-stack-prometheus>:9000
+4. Save and Test
+5. Go to DASHBOARDS menu and choose NEW > NEW DASHBOARDS
+6. Add Visualisation > Choose your <data source name>
+7. Metric - http_requests_total // pod // blog-app
