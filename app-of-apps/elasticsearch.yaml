@@ -13,7 +13,7 @@ spec:
     - repoURL: https://github.com/bitnami/charts.git
       path: "bitnami/elasticsearch"
     # targetRevision: HEAD
-    # chart: "elasticsearch-19.17.0"
+    chart: "elasticsearch-19.17.0"
       helm:
         valueFiles:
         - $values/app-of-apps/files/my-es-values.yml
