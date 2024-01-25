@@ -6,7 +6,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: git@github.com:liormilliger/Portfolio-app.git
+    repoURL: git@github.com:liormilliger/Portfolio-config.git
     # chart: blog-app
     targetRevision: argocd
     path: "blog-app"
