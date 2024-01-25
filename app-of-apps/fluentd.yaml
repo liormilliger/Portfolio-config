@@ -7,8 +7,8 @@ spec:
   project: default
   source:
     repoURL: https://charts.bitnami.com/bitnami
-      chart: fluentd
-      targetRevision: "5.12.1"
+    chart: fluentd
+    targetRevision: "5.12.1"
     #   helm:
     #     valueFiles:
     #     - $values/app-of-apps/files/fluentd-values.yaml
