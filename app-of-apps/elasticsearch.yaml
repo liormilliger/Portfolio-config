@@ -10,10 +10,10 @@ spec:
     # path: "elastic"
     # chart: "elasticsearch"
     # targetRevision: "8.5.1"
-    - repoURL: https://github.com/bitnami/charts
+    - repoURL: oci://registry-1.docker.io/bitnamicharts
       # path: "bitnami/elasticsearch"
-      targetRevision: "19.14.1"
-      chart: "oci://registry-1.docker.io/bitnamicharts/elasticsearch"
+      targetRevision: HEAD
+      chart: "elasticsearch"
     #   helm:
     #     valueFiles:
     #     - $values/app-of-apps/files/my-es-values.yml
