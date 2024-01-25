@@ -11,7 +11,7 @@ spec:
     targetRevision: "55.11.0"
     helm:
       valueFiles:
-        - ./prometheus-values.yaml
+      - prometheus-values.yaml
     # https://artifacthub.io/packages/helm/prometheus-community/kube-prometheus-stack
   destination: 
     server: https://kubernetes.default.svc
