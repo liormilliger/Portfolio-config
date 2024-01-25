@@ -5,15 +5,15 @@ metadata:
   namespace: argocd
 spec:
   project: default
-  sources:
+  source:
     # repoURL: https://helm.elastic.co
     # path: "elastic"
     # chart: "elasticsearch"
     # targetRevision: "8.5.1"
-    - repoURL: oci://registry-1.docker.io/bitnamicharts/elasticsearch
+    repoURL: oci://registry-1.docker.io/bitnamicharts
       # path: "bitnami/elasticsearch"
-      targetRevision: HEAD
-      chart: "elasticsearch"
+    targetRevision: HEAD
+    chart: "elasticsearch"
     #   helm:
     #     valueFiles:
     #     - $values/app-of-apps/files/my-es-values.yml
