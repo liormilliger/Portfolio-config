@@ -7,12 +7,12 @@ spec:
   project: default
   source:
     repoURL: git@github.com:liormilliger/Portfolio-app.git
-    chart: blog-app
+    # chart: blog-app
     targetRevision: argocd
     path: "blog-app"
   destination: 
     server: https://kubernetes.default.svc
-    # namespace: default
+    namespace: default
 
   syncPolicy:
     syncOptions:
