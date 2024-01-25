@@ -10,7 +10,7 @@ spec:
     # path: "elastic"
     # chart: "elasticsearch"
     # targetRevision: "8.5.1"
-    repoURL: oci://registry-1.docker.io/bitnamicharts
+    repoURL: oci://registry-1.docker.io/bitnamicharts/elasticsearch
       # path: "bitnami/elasticsearch"
     targetRevision: "8.12.0"
     chart: "elasticsearch"
