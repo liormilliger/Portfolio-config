@@ -9,7 +9,7 @@ spec:
     repoURL: git@github.com:liormilliger/Portfolio-app.git
     chart: blog-app
     targetRevision: argocd
-    path: "app-of-apps/blog-app"
+    path: "blog-app"
   destination: 
     server: https://kubernetes.default.svc
     namespace: default
