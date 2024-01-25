@@ -6,15 +6,15 @@ metadata:
 spec:
   project: default
   source:
-    - repoURL: https://fluent.github.io/helm-charts
-      chart: argocd
-      targetRevision: "2.2.1"
-      helm:
-        valueFiles:
-        - $values/app-of-apps/files/fluentd-values.yaml
-    - repoURL: git@github.com:liormilliger/Portfolio-config.git
-      targetRevision: argocd
-      ref: values
+    repoURL: https://charts.bitnami.com/bitnami
+      chart: fluentd
+      targetRevision: "5.12.1"
+    #   helm:
+    #     valueFiles:
+    #     - $values/app-of-apps/files/fluentd-values.yaml
+    # - repoURL: git@github.com:liormilliger/Portfolio-config.git
+    #   targetRevision: argocd
+    #   ref: values
   destination: 
     server: https://kubernetes.default.svc
     namespace: fluentd
