@@ -10,16 +10,16 @@ spec:
     # path: "elastic"
     # chart: "elasticsearch"
     # targetRevision: "8.5.1"
-    - repoURL: https://github.com/bitnami/charts.git
+    - repoURL: https://github.com/bitnami/charts
       path: "bitnami/elasticsearch"
       targetRevision: HEAD
       # chart: "elasticsearch"
-      helm:
-        valueFiles:
-        - $values/app-of-apps/files/my-es-values.yml
-    - repoURL: git@github.com:liormilliger/Portfolio-config.git
-      targetRevision: argocd
-      ref: values
+    #   helm:
+    #     valueFiles:
+    #     - $values/app-of-apps/files/my-es-values.yml
+    # - repoURL: git@github.com:liormilliger/Portfolio-config.git
+    #   targetRevision: argocd
+    #   ref: values
   destination: 
     server: https://kubernetes.default.svc
     namespace: elastic
