@@ -11,7 +11,7 @@ spec:
       targetRevision: "2.2.1"
       helm:
         valueFiles:
-        - $values/app-of-apps/files/my-es-values.yml
+        - $values/app-of-apps/files/fluentd-values.yaml
     - repoURL: git@github.com:liormilliger/Portfolio-config.git
       targetRevision: argocd
       ref: values
