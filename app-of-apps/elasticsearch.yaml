@@ -12,7 +12,7 @@ spec:
     # targetRevision: "8.5.1"
     - repoURL: https://github.com/bitnami/charts
       # path: "bitnami/elasticsearch"
-      # targetRevision: HEAD
+      targetRevision: "19.14.1"
       chart: "oci://registry-1.docker.io/bitnamicharts/elasticsearch"
     #   helm:
     #     valueFiles:
