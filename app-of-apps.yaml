@@ -7,7 +7,7 @@ spec:
   project: default
   source:
     repoURL: git@github.com:liormilliger/Portfolio-config.git
-    targetRevision: HEAD
+    targetRevision: argocd
     path: "app-of-apps"
   destination: 
     server: https://kubernetes.default.svc
