@@ -10,7 +10,7 @@ spec:
     chart: kube-prometheus-stack
     targetRevision: "55.11.0"
     helm:
-      valueFiles:
+      valuesFiles:
       - prometheus-values.yaml
     # https://artifacthub.io/packages/helm/prometheus-community/kube-prometheus-stack
   destination: 
