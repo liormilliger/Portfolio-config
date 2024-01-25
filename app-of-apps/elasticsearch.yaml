@@ -10,8 +10,7 @@ spec:
     # path: "elastic"
     # chart: "elasticsearch"
     # targetRevision: "8.5.1"
-    - repoURL: https://github.com/bitnami/charts.git
-      path: "bitnami/elasticsearch"
+    - repoURL: https://github.com/bitnami/charts/tree/main/bitnami/elasticsearch
       targetRevision: "19.14.1"
       chart: "elasticsearch"
       helm:
