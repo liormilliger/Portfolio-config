@@ -6,12 +6,15 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://fluent.github.io/helm-charts
-    chart: argocd
-    targetRevision: "v2.2.1"
-    helm:
-      valueFiles:
-        - files/fluentd-values.yaml
+    - repoURL: https://fluent.github.io/helm-charts
+      chart: argocd
+      targetRevision: "2.2.1"
+      helm:
+        valueFiles:
+        - $values/app-of-apps/files/my-es-values.yml
+    - repoURL: git@github.com:liormilliger/Portfolio-config.git
+      targetRevision: argocd
+      ref: values
   destination: 
     server: https://kubernetes.default.svc
     namespace: fluentd
