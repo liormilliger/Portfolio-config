@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: git@github.com:liormilliger/Portfolio-app.git
     chart: blog-app
-    targetRevision: argocd
+    # targetRevision: argocd
     path: "blog-app"
   destination: 
     server: https://kubernetes.default.svc
