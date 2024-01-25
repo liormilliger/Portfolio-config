@@ -7,7 +7,7 @@ spec:
   project: default
   source:
     repoURL: https://charts.bitnami.com/bitnami
-      # path: "bitnami/elasticsearch"
+    path: "bitnami/elasticsearch"
     targetRevision: "19.14.1"
     chart: elasticsearch
     #   helm:
