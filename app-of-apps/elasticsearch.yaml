@@ -6,14 +6,10 @@ metadata:
 spec:
   project: default
   source:
-    # repoURL: https://helm.elastic.co
-    # path: "elastic"
-    # chart: "elasticsearch"
-    # targetRevision: "8.5.1"
-    repoURL: https://github.com/bitnami/charts/tree/main/bitnami
+    repoURL: https://charts.bitnami.com/bitnami
       # path: "bitnami/elasticsearch"
     targetRevision: "19.14.1"
-    chart: "elasticsearch"
+    chart: elasticsearch
     #   helm:
     #     valueFiles:
     #     - $values/app-of-apps/files/my-es-values.yml
