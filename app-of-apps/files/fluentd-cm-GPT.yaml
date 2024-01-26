@@ -17,13 +17,23 @@ data:
       port 9880
     </source>
 
+    # Throw the healthcheck to the standard output instead of forwarding it
+    <match fluentd.healthcheck>
+      @type stdout
+    </match>
+
     # Fetching logs from DEFAULT CONTAINER FOLDER (ON NODE) AND PARSING
     <source>
       @type tail
       path /var/log/containers/*.log
-      pos_file /var/log/fluentd-containers.log.pos
+      pos_file /var/log/containers.log.pos
       # time_format %Y-%m-%d %H:%M:%S,%L
-      time_format %Y-%m-%dT%H:%M:%S.%NZ
+      # time_format %Y-%m-%dT%H:%M:%S.%NZ
+      <parse>
+        @type regexp
+        expression /^(?<k8s-timestamp>.+) \{("[^"]*"\s*,\s*)*"[^"]*"\s*,\s*"[^"]*"\s*\}/
+        time_format %Y-%m-%d %H:%M:%S,%L
+      </parse>
       tag kubernetes.*
       format none
       read_from_head true
@@ -63,7 +73,7 @@ data:
       @type null
     </match>
 
-    <match kubernetes.*>
+    <match **>
       @type elasticsearch
       @log_level info
       host elasticsearch.elastic.svc.cluster.local
