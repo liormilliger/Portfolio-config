@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Pod
 metadata:
- name: hellopod
+ name: test-pod
 spec:
  containers:
  - name: count

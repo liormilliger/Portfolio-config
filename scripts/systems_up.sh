@@ -1,29 +1,37 @@
 #!/bin/bash
 
 echo "---===<{[ CONNECTING TO AWS ]}>===---"
+echo ""
 
 aws eks --region us-east-1 update-kubeconfig --name blog-cluster
+echo ""
 
 echo "---===<{[ INSTALLING CSI STORAGE-CLASS ]}>===---"
+echo ""
 
 kubectl apply -f storage-class-csi.yaml
+echo ""
 
 echo "---===<{[ APPLYING SECRET Shhhhh ]}>===---"
+echo ""
 
 sh ./scripts/secret-aws-ebs-csi-driver.sh
+echo ""
 
 echo "---===<{[ INSTALLING CSI-DRIVER HELM CHART]}>===---"
+echo ""
 
 helm install aws-ebs-csi-driver aws-ebs-csi-driver/aws-ebs-csi-driver
+echo ""
 
-echo "---===<{[ INSTALLING BLOG-APP HELM CHART ]}>===---"
+# echo "---===<{[ INSTALLING BLOG-APP HELM CHART ]}>===---"
 
-helm install blog-app blog-app
+# helm install blog-app blog-app
 
 # echo "---===<{[ INSTALLING APP-OF-APPS FOR ARGOCD]}>===---"
 # kubectl apply -f app-of-apps.yaml
 
-echo "---===<{[ F I N I S H ]}>===---"
+echo "---===<{[ F I N I S H E D   I N I T I A L   S C R I P T ]}>===---"
 
 
 

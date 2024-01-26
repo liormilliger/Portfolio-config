@@ -48,8 +48,8 @@ ArgoCD - 8282
 kubectl port-forward -n argocd service/argocd-server 8282:80
 KIBANA - 8585
 kubectl port-forward -n elastic service/elasticsearch-kibana 8585:5601
-PROMETHEUS - 9090
-kubectl port-forward -n kube-prometheus-stack service/kube-prometheus-stack-grafana 9090:80
+Grafana - 9091
+kubectl port-forward -n kube-prometheus-stack service/kube-prometheus-stack-grafana 9091:80
 elasticsearch
  
 -------------------------------[ ARGO APP-OF-APPS INSTALL ]--------------------------------------------
