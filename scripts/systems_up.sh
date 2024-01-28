@@ -24,15 +24,10 @@ echo ""
 helm install aws-ebs-csi-driver aws-ebs-csi-driver/aws-ebs-csi-driver
 echo ""
 
-# echo "---===<{[ INSTALLING BLOG-APP HELM CHART ]}>===---"
-
-# helm install blog-app blog-app
-
-# echo "---===<{[ INSTALLING APP-OF-APPS FOR ARGOCD]}>===---"
-# kubectl apply -f app-of-apps.yaml
-
 echo "---===<{[ F I N I S H E D   I N I T I A L   S C R I P T ]}>===---"
 
+echo ""
+echo ""
 
 
 
