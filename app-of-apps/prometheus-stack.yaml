@@ -4,11 +4,14 @@ metadata:
   name: prometheus-stack
   namespace: argocd
 spec:
+  syncPolicy:
+    syncOptions:
+    - ServerSideApply=true
   project: default
   sources:
     - repoURL: https://prometheus-community.github.io/helm-charts
       chart: kube-prometheus-stack
-      targetRevision: "56.3.0"
+      targetRevision: "55.8.1"
       helm:
         valueFiles:
         - $values/app-of-apps/files/prometheus-values.yaml
