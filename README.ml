@@ -75,6 +75,7 @@ kubectl port-forward -n elastic service/elasticsearch-kibana 8585:5601
 
 Grafana - 9091
 kubectl port-forward -n kube-prometheus-stack service/kube-prometheus-stack-grafana 9091:80
+etheus-stack service/kube-prometheus-stack-grafana 9091:80
 
  
 -------------------------------[ ARGO APP-OF-APPS INSTALL ]--------------------------------------------
