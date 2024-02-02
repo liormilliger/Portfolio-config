@@ -3,6 +3,8 @@ kind: ConfigMap
 metadata:
   name: fluentd-config
   namespace: fluentd
+  annotations:
+    argocd.argoproj.io/hook: PreSync
 data:
   fluentd.conf: |
 
