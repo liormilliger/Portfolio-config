@@ -4,9 +4,6 @@ metadata:
   name: prometheus-stack
   namespace: argocd
 spec:
-  # syncPolicy:
-  #   syncOptions:
-  #   - ServerSideApply=true
   project: default
   sources:
     - repoURL: https://prometheus-community.github.io/helm-charts
@@ -25,6 +22,7 @@ spec:
   syncPolicy:
     syncOptions:
     - CreateNamespace=true
+    # - ServerSideApply=true
     automated:
       selfHeal: true
       prune: true
