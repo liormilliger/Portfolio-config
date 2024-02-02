@@ -1,34 +1,34 @@
-# apiVersion: argoproj.io/v1alpha1
-# kind: Application
-# metadata:
-#   name: fluentd
-#   namespace: argocd
-# spec:
-#   project: default
-#   sources:
-#     - repoURL: https://charts.bitnami.com/bitnami
-#       chart: fluentd
-#       targetRevision: "5.12.1"
-#       helm:
-#         valueFiles:
-#         - $values/app-of-apps/files/fluentd-values.yaml
-#     - repoURL: git@github.com:liormilliger/Portfolio-config.git
-#       targetRevision: main
-#       ref: values
-#   destination: 
-#     server: https://kubernetes.default.svc
-#     namespace: fluentd
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: fluentd
+  namespace: argocd
+spec:
+  project: default
+  sources:
+    - repoURL: https://charts.bitnami.com/bitnami
+      chart: fluentd
+      targetRevision: "5.12.1"
+      helm:
+        valueFiles:
+        - $values/app-of-apps/files/fluentd-values.yaml
+    - repoURL: git@github.com:liormilliger/Portfolio-config.git
+      targetRevision: main
+      ref: values
+  destination: 
+    server: https://kubernetes.default.svc
+    namespace: fluentd
 
-#   syncPolicy:
-#     syncOptions:
-#     - CreateNamespace=true
-#     automated:
-#       selfHeal: true
-#       prune: true
+  syncPolicy:
+    # syncOptions:
+    # - CreateNamespace=true
+    automated:
+      selfHeal: true
+      prune: true
   
-#   additionalItems:
-#   # ConfigMap with a pre-sync hook
-#   - kind: ConfigMap
-#     name: fluentd-config
-#     namespace: fluentd
-#     path: ./files/fluentd-cm-GPT.yaml
+  # additionalItems:
+  # # ConfigMap with a pre-sync hook
+  # - kind: ConfigMap
+  #   name: fluentd-config
+  #   namespace: fluentd
+  #   path: ./files/fluentd-cm-GPT.yaml
