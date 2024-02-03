@@ -10,10 +10,6 @@ spec:
       chart: kube-prometheus-stack
       targetRevision: "56.3.0"
       helm:
-        # Use the contents of files as parameters (uses Helm's --set-file)
-        fileParameters:
-        - name: service-monitor
-          path: $values/app-of-apps/files/prometheus-service-monitor.yaml
         valueFiles:
         - $values/app-of-apps/files/prometheus-values.yaml
         # - $values/app-of-apps/files/prometheus-service-monitor.yaml
