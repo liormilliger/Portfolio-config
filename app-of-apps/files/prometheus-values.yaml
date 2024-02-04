@@ -10,9 +10,6 @@ prometheus:
     ## which will also match the podmonitors created
     ##
     podMonitorSelectorNilUsesHelmValues: false
-    serviceMonitorSelector:
-      matchLabels:
-        release: prometheus
 
 serverFiles:
   prometheus.yml:
