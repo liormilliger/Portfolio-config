@@ -10,9 +10,9 @@ prometheus:
     ## which will also match the podmonitors created
     ##
     podMonitorSelectorNilUsesHelmValues: false
-grafana:
-  persistence:
-    enabled: true
+    serviceMonitorSelector:
+      matchLabels:
+        release: prometheus
 
 serverFiles:
   prometheus.yml:
@@ -26,7 +26,6 @@ additionalServiceMonitors:
   - name: 'blog-app-service-monitor'
     selector:
       matchLabels:
-        release: prometheus
         app: blog
     namespaceSelector:
       matchNames:
@@ -41,3 +40,7 @@ additionalServiceMonitors:
 #     scrape_interval: 15s
 #     static_configs:
 #       - targets: ['blog-service:5000']
+
+grafana:
+  persistence:
+    enabled: true
