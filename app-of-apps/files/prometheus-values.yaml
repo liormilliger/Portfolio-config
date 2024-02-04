@@ -22,10 +22,11 @@ serverFiles:
 additionalServiceMonitors:
   - name: 'blog-app-service-monitor'
     selector:
+      release: prometheus
       matchLabels:
         app: blog
-    labels:
-      release: prometheus
+    # labels:
+    #   release: prometheus
     namespaceSelector:
       matchNames:
       - default
