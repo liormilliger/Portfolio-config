@@ -1,0 +1,71 @@
+prometheus:
+  prometheusSpec:
+    serviceMonitorSelectorNilUsesHelmValues: false
+    podMonitorSelectorNilUsesHelmValues: false
+    additionalServiceMonitors:
+      - name: 'blog-app-service-monitor'
+        selector:
+          release: prometheus
+          matchLabels:
+            app: blog
+        namespaceSelector:
+          matchNames:
+            - default
+        endpoints:
+          - port: http
+            path: /metrics
+            targetPort: 5000
+
+serverFiles:
+  prometheus.yml:
+    scrape_configs:
+      - job_name: 'my-web-app'
+        scrape_interval: 15s
+        kubernetes_sd_configs:
+          - role: service
+        relabel_configs:
+          - source_labels:
+              - __meta_kubernetes_service_label_app
+            target_label: app
+          - action: keep
+            regex: blog
+
+grafana:
+  persistence:
+    enabled: true
+  dashboardProviders:
+    dashboardproviders.yaml:
+      apiVersion: 1
+      providers:
+        - name: "default"
+          orgId: 1
+          folder: ""
+          type: file
+          disableDeletion: false
+          editable: true
+          options:
+            path: /var/lib/grafana/dashboards/default
+  # dashboards:
+  #   default:
+  #     blog:
+  #       json: |
+  #         {
+  #           "annotations": {
+  #             "list": [
+  #               {
+  #                 "builtIn": 1,
+  #                 "datasource": {
+  #                   "type": "grafana",
+  #                   "uid": "-- Grafana --"
+  #                 },
+  #                 "enable": true,
+  #                 "hide": true,
+  #                 "iconColor": "rgba(0, 211, 255, 1)",
+  #                 "name": "Annotations & Alerts",
+  #                 "type": "dashboard"
+  #               }
+  #             ]
+  #           },
+  #           "editable": true,
+  #           // ... (your existing dashboard JSON)
+  #         }
