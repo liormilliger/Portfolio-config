@@ -26,6 +26,7 @@ additionalServiceMonitors:
   - name: 'blog-app-service-monitor'
     selector:
       matchLabels:
+        release: prometheus
         app: blog
     namespaceSelector:
       matchNames:
