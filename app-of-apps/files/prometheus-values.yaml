@@ -14,6 +14,26 @@ grafana:
   persistence:
     enabled: true
 
+serverFiles:
+  prometheus.yml:
+    scrape_configs:
+      - job_name: 'python_application'
+        static_configs:
+          - targets: ['blog-service:5000']
+
+additionalServiceMonitors:
+  - name: 'blog-app-service-monitor'
+    selector:
+      matchLabels:
+        app: blog
+    namespaceSelector:
+      matchNames:
+      - default
+    endpoints:
+    - port: http
+      path: /metrics
+      targetPort: 5000
+
 additionalScrapeConfigs:
   - job_name: 'python_application'
     scrape_interval: 15s
