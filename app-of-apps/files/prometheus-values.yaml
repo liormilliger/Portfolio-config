@@ -27,6 +27,8 @@ additionalServiceMonitors:
     selector:
       matchLabels:
         app: blog
+    labels:
+      release: prometheus
     namespaceSelector:
       matchNames:
       - default
