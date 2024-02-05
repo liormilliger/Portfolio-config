@@ -4,23 +4,23 @@ metadata:
   name: blog-app
   # namespace: app
   labels:
-    app: blog
+    app: {{ .Values.appName }}
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: blog
+      app: {{ .Values.appName }}
   template:
     metadata:
       labels:
-        app: blog
+        app: {{ .Values.appName }}
     spec:
       containers:
-      - name: blog
+      - name: {{ .Values.appName }}
         image: 644435390668.dkr.ecr.us-east-1.amazonaws.com/liorm-portfolio:1.0.85
         envFrom:
         - configMapRef:
             name: blog-conf
         ports:
-        - containerPort: 5000
+        - containerPort: {{ .Values.appPort }}
           name: webapp

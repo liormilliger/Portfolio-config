@@ -15,6 +15,6 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: blog-service
+            name: {{ .Values.appSvcName }}
             port:
-              number: 5000
+              number: {{ .Values.appPort }}
