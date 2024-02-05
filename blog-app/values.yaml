@@ -1,13 +1,13 @@
 blogapp:
   appName: blog
-  appPort: "5000"
+  appPort: 5000
   appPortName: webapp
   appSvcName: blog-service
 
 mongodb:
   mongoApp: mongo
   mongoSvc: mongodb
-  mongoPort: "27017"
+  mongoPort: 27017
   mongoPV: mongo-data
 
 configmap:

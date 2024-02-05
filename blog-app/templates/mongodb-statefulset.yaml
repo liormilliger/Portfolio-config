@@ -2,7 +2,6 @@ apiVersion: apps/v1
 kind: StatefulSet
 metadata:
   name: {{ .Values.mongodb.mongoApp }}
-  # namespace: app
 spec:
   selector:
     matchLabels:

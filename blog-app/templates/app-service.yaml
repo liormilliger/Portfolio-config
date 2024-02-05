@@ -1,10 +1,9 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ .Values.appSvcName }}
-  # namespace: app
+  name: {{ .Values.blogapp.appSvcName }}
   labels:
-    app: {{ .Values.appName }}
+    app: {{ .Values.blogapp.appName }}
   annotations:
     prometheus.io/scrape: "true"
     prometheus.io.scheme: "http"
@@ -16,6 +15,6 @@ spec:
   type: ClusterIP
   ports:
     - protocol: TCP
-      port: {{ .Values.blogapp.appPort | default 5000 }}
+      port: {{ .Values.blogapp.appPort | default 5000}}
       name: http
       targetPort: {{ .Values.blogapp.appPortName }}

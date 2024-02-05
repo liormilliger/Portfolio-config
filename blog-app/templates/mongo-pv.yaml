@@ -5,7 +5,7 @@ metadata:
 spec:
   storageClassName: {{ .Values.mongopv.scType }}
   accessModes:
-    - {{ .Values.mongopv.accessModes }}
+    - {{ .Values.mongopv.accessMode }}
   capacity:
     storage: {{ .Values.mongopv.volSize }}
   hostPath:
@@ -17,7 +17,7 @@ metadata:
   name: mongo-pvc
 spec:
   accessModes:
-    - {{ .Values.mongopv.accessModes }}
+    - {{ .Values.mongopv.accessMode }}
   resources:
     requests:
       storage: {{ .Values.mongopv.volSize }}
