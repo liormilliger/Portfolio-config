@@ -24,11 +24,7 @@ echo ""
 echo ""
 echo "---===<{[ CLEANING DEPENDENCIES AND BOOTUP ]}>===---"
 echo "----------------------------------------------------"
-
-
-
-
-
+echo ""
 echo "---===<{[ UNINSTALLING DEPENDENCIES FILES ]}>===---"
 echo ""
 echo ""
