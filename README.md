@@ -17,7 +17,7 @@ with app files, Jenkinsfile for CI, Dockerfiles and docker-compose file for loca
 - Portfolio-config contains the kubernetes configuration files for our full production deployment.
 - It has /blog-app which is a helm chart of the application and DB deployment
 - It has the App-of-apps application files for ArgoCD that listens to that repository
-
+- It has a /scripts folder with installations of all components for automated manual deployment
 
 ## Full Deployment Workflow Chart
 
@@ -30,6 +30,7 @@ with app files, Jenkinsfile for CI, Dockerfiles and docker-compose file for loca
 Before you begin, ensure you have the following:
 - A cluster with at least 2 worker nodes
 - Nodes should be with at least 2 cpu each and 8GB memory
+- kubectl installed
 
 ## Helm Repo Updates
 In order to work with the helm charts - We need to add the repos to our helm library:
@@ -60,10 +61,11 @@ In order to work with the helm charts - We need to add the repos to our helm lib
 
 ## Installations - STORAGE
 
-We Install multiple applications dependencies are needed for some of them
-There is a script in /scripts/systems_up.sh that installs these:
+For manual installation, we will start with these -
 
-`sh ./scripts/systems_up.sh`
+establishing a connection between the CLI and our AWS EKS cluster
+
+Installing storage related components
 
 1. Establish connection to aws with `aws eks --region us-east-1 update-kubeconfig --name blog-cluster`
 2. Installing storage-class-csi.yaml - `kubectl apply -f storage-class-csi.yaml`
@@ -83,10 +85,26 @@ We will use helm charts to deploy the applications. Some apps need values files 
 2. `helm install ingress-controller ingress-nginx/ingress-nginx`
 3. `helm install -n elastic --create-namespace elasticsearch bitnami/elasticsearch -f app-of-apps/files/my-es-values.yml`
 4. `kubectl create namespace fluentd`
-5. `kubectl apply -f ./app-of-apps/files/fluentd-cm-GPT.yaml`
+5. `kubectl apply -f ./app-of-apps/files/fluentd-cm.yaml`
 6. `helm install -n fluentd fluentd bitnami/fluentd -f app-of-apps/files/fluentd-values.yaml`
 7. `helm install -n kube-prometheus-stack --create-namespace kube-prometheus-stack prometheus-community/kube-prometheus-stack -f app-of-apps/files/prometheus-values.yaml`
 8. `kubectl apply -f ./app-of-apps/files/prometheus-service-monitor.yaml`
+
+## Installations with scripts
+
+In scripts folder we have scripts that we
+***execute from root folder.**
+
+Scripts are divided by their stacks and should be installed by a certain order:
+
+1. `sh ./scripts/app_and_ingress.sh`
+2. `sh ./scripts/storage.sh`
+3. `sh ./scripts/install_efk.sh`
+4. `sh ./scripts/prom_stack.sh`
+
+There is also a script that installs all by that order - `sh ./scripts/bootup.sh`
+
+And another script to clean ***ALL*** installations - `sh /scripts/clean_installs.sh`
 
 ## Components Overview - App
 
