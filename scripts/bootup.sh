@@ -1,7 +1,12 @@
 #/bin/bash
 
 echo "----====~~~~ {{{[[[<<< BOOTING ALL SCRIPTS >>>]]]}}}"
+echo ""
+echo ""
+sh ./scripts/app_and_ingress.sh
 
-sh ./scripts/systems_up.sh
+sh ./scripts/storage.sh
 
-sh ./scripts/dependencies-installs.sh
+sh ./scripts/install_efk.sh
+
+sh ./scripts/prom_stack.sh

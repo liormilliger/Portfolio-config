@@ -1,21 +1,32 @@
 #!/bin/bash
-
-
-
-echo "---===<{[ INSTALLING HELM CHART FOR ELASTICSEARCH & KIBANA ]}>===---"
-
+echo "---===<{[ INSTALLING HELM CHARTS FOR EFK STACK ]}>===---"
+echo "========================================================"
+echo ""
+echo ""
+echo "---===<{[ INSTALLING ELASTICSEARCH WITH KIBANA ]}>===---"
+echo ""
+echo ""
 helm install -n elastic --create-namespace elasticsearch bitnami/elasticsearch -f ./app-of-apps/files/my-es-values.yml
-
-
+echo ""
+echo ""
 echo "---===<{[ CREATING FLUENTD NAMESPACE ]}>===---"
-
+echo ""
+echo ""
 kubectl create ns fluentd
-
+echo ""
+echo ""
 echo "---===<{[ INSTALLING CONFIGMAP FOR FLUENTD ]}>===---"
-
-kubectl apply -f ./app-of-apps/fluentd-cm-GPT.yaml
-
-
-# echo "---===<{[ INSTALLING HELM CHART FOR FLUENTD ]}>===---"
-
-# helm install -n fluentd fluentd bitnami/fluentd -f ./app-of-apps/files/fluentd-values.yaml 
+echo ""
+echo ""
+kubectl apply -f ./app-of-apps/fluentd-cm.yaml
+echo ""
+echo ""
+echo "---===<{[ INSTALLING HELM CHART FOR FLUENTD ]}>===---"
+echo ""
+echo""
+helm install -n fluentd fluentd bitnami/fluentd -f ./app-of-apps/files/fluentd-values.yaml 
+echo ""
+echo ""
+echo "---===<{[ F I N I S H E D   S C R I P T  I N S T A L L A T I O N S  ]}>===---"
+echo ""
+echo ""

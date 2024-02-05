@@ -1,3 +1,8 @@
+#!/bin/bash
+echo "---===<{[ INSTALLING PROMETHEUS HELM CHART ]}>===---"
+echo "===================================================="
+echo ""
+echo ""
 echo "---===<{[ CREATING NAMESPACE ]}>===---"
 echo ""
 echo ""
@@ -14,5 +19,8 @@ echo "---===<{[ INSTALLING SERVICEMONITOR ]}>===---"
 echo ""
 echo ""
 kubectl apply -f ./app-of-apps/files/prometheus-service-monitor.yaml
+echo ""
+echo ""
+echo "---===<{[ F I N I S H E D   S C R I P T  I N S T A L L A T I O N S  ]}>===---"
 echo ""
 echo ""
