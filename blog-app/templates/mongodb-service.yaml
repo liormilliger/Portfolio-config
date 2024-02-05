@@ -1,14 +1,14 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ .Values.mongoSvc }}
+  name: {{ .Values.mongodb.mongoSvc }}
   # namespace: app
   labels:
-    app: {{ .Values.mongoApp }}
+    app: {{ .Values.mongodb.mongoApp }}
 spec:
   clusterIP: None
   ports:
-  - port: 27017
+  - port: {{ .Values.mongodb.mongoApp | default 27017 }}
   selector:
-    app: {{ .Values.mongoApp }}
+    app: {{ .Values.mongodb.mongoApp }}
 

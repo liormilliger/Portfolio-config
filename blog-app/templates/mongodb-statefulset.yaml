@@ -1,25 +1,25 @@
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: {{ .Values.mongoApp }}
+  name: {{ .Values.mongodb.mongoApp }}
   # namespace: app
 spec:
   selector:
     matchLabels:
-      app: {{ .Values.mongoApp }}
-  serviceName: {{ .Values.mongoSvc }}
+      app: {{ .Values.mongodb.mongoApp }}
+  serviceName: {{ .Values.mongodb.mongoSvc }}
   replicas: 1
   template:
     metadata:
       labels:
-        app: {{ .Values.mongoApp }}
+        app: {{ .Values.mongodb.mongoApp }}
     spec:
       containers:
-      - name: {{ .Values.mongoApp }}
+      - name: {{ .Values.mongodb.mongoApp }}
         image: mongo:5.0
         ports:
-        - containerPort: 27017
-          name: {{ .Values.mongoApp }}
+        - containerPort: {{ .Values.mongodb.mongoPort }}
+          name: {{ .Values.mongodb.mongoApp }}
         env:
         - name: MONGO_INITDB_DATABASE
           value: blog
@@ -28,7 +28,7 @@ spec:
         - name: MONGO_INITDB_ROOT_PASSWORD
           value: password
         volumeMounts:
-        - name: {{ .Values.mongoPV }}
+        - name: {{ .Values.mongodb.mongoPV }}
           mountPath: /data/db
         - name: init-database
           mountPath: "/docker-entrypoint-initdb.d/"
@@ -41,12 +41,12 @@ spec:
       - name: init-database
         configMap:
           name: mongo-init-script
-      - name: {{ .Values.mongoPV }}
+      - name: {{ .Values.mongodb.mongoPV }}
         persistentVolumeClaim:
           claimName: mongo-pvc
   # volumeClaimTemplates:
   # - metadata:
-  #     name: {{ .Values.mongoPV }}
+  #     name: {{ .Values.mongodb.mongoPV }}
   #   spec:
   #     storageClassName: standard
   #     accessModes:

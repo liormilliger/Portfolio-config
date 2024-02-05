@@ -3,11 +3,11 @@ kind: PersistentVolume
 metadata:
   name: mongo-pv
 spec:
-  storageClassName: gp2
+  storageClassName: {{ .Values.mongopv.scType }}
   accessModes:
-    - ReadWriteMany
+    - {{ .Values.mongopv.accessModes }}
   capacity:
-    storage: 150Mi
+    storage: {{ .Values.mongopv.volSize }}
   hostPath:
     path: "/data/db"
 ---
@@ -17,9 +17,9 @@ metadata:
   name: mongo-pvc
 spec:
   accessModes:
-    - ReadWriteMany
+    - {{ .Values.mongopv.accessModes }}
   resources:
     requests:
-      storage: 150Mi
+      storage: {{ .Values.mongopv.volSize }}
 
   

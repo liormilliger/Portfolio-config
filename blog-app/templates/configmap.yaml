@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: blog-conf
+  name: {{ .Values.configmap.cmName }}
   # namespace: app
 data:
   # MONGODB_URI: "mongodb://mongo-0.mongodb.default.svc.cluster.local:27017,mongo-1.mongodb.default.svc.cluster.local:27017,mongo-2.mongodb.default.svc.cluster.local:27017/blog"
