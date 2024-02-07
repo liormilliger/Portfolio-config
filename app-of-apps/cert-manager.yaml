@@ -5,10 +5,16 @@ metadata:
   namespace: argocd
 spec:
   project: default
-  source:
-    repoURL: https://charts.jetstack.io
-    chart: cert-manager
-    targetRevision: "v1.13.3"
+  sources:
+    - repoURL: https://charts.jetstack.io
+      chart: cert-manager
+      targetRevision: "v1.13.3"
+      helm:
+        valueFiles:
+        - $values/app-of-apps/files/cert-values.yaml
+    - repoURL: git@github.com:liormilliger/Portfolio-config.git
+      targetRevision: HEAD
+      ref: values
   destination: 
     server: https://kubernetes.default.svc
     namespace: default
