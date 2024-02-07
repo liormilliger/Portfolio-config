@@ -7,8 +7,7 @@ spec:
   project: default
   source:
     repoURL: git@github.com:liormilliger/Portfolio-config.git
-    # chart: blog-app
-    targetRevision: main
+    targetRevision: HEAD
     path: "blog-app"
   destination: 
     server: https://kubernetes.default.svc

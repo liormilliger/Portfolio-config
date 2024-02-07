@@ -14,7 +14,7 @@ spec:
         - $values/app-of-apps/files/prometheus-values.yaml
         # - $values/app-of-apps/files/prometheus-service-monitor.yaml
     - repoURL: git@github.com:liormilliger/Portfolio-config.git
-      targetRevision: main
+      targetRevision: HEAD
       ref: values
   destination: 
     server: https://kubernetes.default.svc

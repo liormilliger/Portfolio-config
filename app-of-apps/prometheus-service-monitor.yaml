@@ -3,9 +3,9 @@ kind: ServiceMonitor
 metadata:
   name: blog-app-service-monitor
   namespace: kube-prometheus-stack
-  # annotations:
-  #   # argocd.argoproj.io/hook: PostSync
-  #   argocd.argoproj.io/sync-wave: "10"
+  annotations:
+    argocd.argoproj.io/hook: Sync
+    argocd.argoproj.io/sync-wave: "10"
   labels:
     release: prometheus
 spec:
