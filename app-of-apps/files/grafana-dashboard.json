@@ -18,7 +18,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 30,
+  "id": 28,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -38,7 +38,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "d778b9bf-9019-4902-91c0-ff8edf4ea5bb"
+        "uid": "b467b39f-1d60-4f2e-be32-b77d2432ba59"
       },
       "fieldConfig": {
         "defaults": {
@@ -89,7 +89,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "d778b9bf-9019-4902-91c0-ff8edf4ea5bb"
+            "uid": "b467b39f-1d60-4f2e-be32-b77d2432ba59"
           },
           "disableTextWrap": false,
           "editorMode": "builder",
@@ -109,7 +109,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "d778b9bf-9019-4902-91c0-ff8edf4ea5bb"
+        "uid": "b467b39f-1d60-4f2e-be32-b77d2432ba59"
       },
       "fieldConfig": {
         "defaults": {
@@ -160,7 +160,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "d778b9bf-9019-4902-91c0-ff8edf4ea5bb"
+            "uid": "b467b39f-1d60-4f2e-be32-b77d2432ba59"
           },
           "disableTextWrap": false,
           "editorMode": "builder",
@@ -193,7 +193,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "d778b9bf-9019-4902-91c0-ff8edf4ea5bb"
+        "uid": "prometheus"
       },
       "fieldConfig": {
         "defaults": {
@@ -277,7 +277,7 @@
           },
           "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "http_requests_total{pod=\"blog-app-79f75bcbb9-8phjq\"}",
+          "expr": "http_requests_total{service=\"blog-service\"}",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
           "instant": false,
@@ -293,7 +293,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "d778b9bf-9019-4902-91c0-ff8edf4ea5bb"
+        "uid": "prometheus"
       },
       "fieldConfig": {
         "defaults": {
@@ -348,7 +348,7 @@
           },
           "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "request_duration_seconds{pod=\"blog-app-79f75bcbb9-8phjq\"}",
+          "expr": "request_duration_seconds{service=\"blog-service\"}",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
           "instant": false,
@@ -376,6 +376,6 @@
   "timezone": "",
   "title": "Blog-App Dashboard",
   "uid": "ed845c0c-7f20-4fc8-b290-f1c7c8c4d13e",
-  "version": 2,
+  "version": 4,
   "weekStart": ""
 }
