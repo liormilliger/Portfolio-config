@@ -157,11 +157,11 @@ ArgoCD
 
 Kibana
 
-`kubectl port-forward -n elastic service/elasticsearch-kibana 8585:5601`
+`kubectl port-forward -n elastic service/elasticsearch-kibana 5601`
 
 Grafana
 
-`kubectl port-forward -n kube-prometheus-stack service/kube-prometheus-stack-grafana 9091:80`
+`kubectl port-forward -n kube-prometheus-stack service/kube-prometheus-stack-grafana 8585:80`
 
 ## Integration with Argo CD
 
