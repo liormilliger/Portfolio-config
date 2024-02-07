@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: {{ .Values.blogapp.appName }}
-        image: 644435390668.dkr.ecr.us-east-1.amazonaws.com/liorm-portfolio:1.0.85
+        image: {{ .Values.blogapp.appImage }}
         envFrom:
         - configMapRef:
             name: {{ .Values.configmap.cmName }}
