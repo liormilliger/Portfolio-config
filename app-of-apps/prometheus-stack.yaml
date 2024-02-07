@@ -12,7 +12,6 @@ spec:
       helm:
         valueFiles:
         - $values/app-of-apps/files/prometheus-values.yaml
-        # - $values/app-of-apps/files/prometheus-service-monitor.yaml
     - repoURL: git@github.com:liormilliger/Portfolio-config.git
       targetRevision: HEAD
       ref: values
