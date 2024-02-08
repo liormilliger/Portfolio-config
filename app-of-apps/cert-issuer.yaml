@@ -1,29 +1,35 @@
-# # Issuer resource for Let's Encrypt
-# apiVersion: cert-manager.io/v1
-# kind: Issuer
-# metadata:
-#   name: letsencrypt-prod
-# spec:
-#   acme:
-#     server: https://acme-v02.api.letsencrypt.org/directory
-#     email: liormdevops@gmail.com
-#     privateKeySecretRef:
-#       name: letsencrypt-prod
-#     solvers:
-#     - http01:
-#         ingress:
-#           class: nginx
+# Issuer resource for Let's Encrypt
+apiVersion: cert-manager.io/v1
+kind: Issuer
+metadata:
+  name: letsencrypt-prod
+  annotations:
+    argocd.argoproj.io/hook: Sync
+    argocd.argoproj.io/sync-wave: "10"
+spec:
+  acme:
+    server: https://acme-v02.api.letsencrypt.org/directory
+    email: liormdevops@gmail.com
+    privateKeySecretRef:
+      name: letsencrypt-prod
+    solvers:
+    - http01:
+        ingress:
+          class: nginx
 
-# ---
-# # Certificate resource
-# apiVersion: cert-manager.io/v1
-# kind: Certificate
-# metadata:
-#   name: mydomain-tls
-# spec:
-#   secretName: mydomain-tls-secret
-#   issuerRef:
-#     name: letsencrypt-prod
-#   dnsNames:
-#   - blogitapp.ddnsking.com
-#   - www.blogitapp.ddnsking.com
+---
+# Certificate resource
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: mydomain-tls
+  annotations:
+    argocd.argoproj.io/hook: Sync
+    argocd.argoproj.io/sync-wave: "10"
+spec:
+  secretName: mydomain-tls-secret
+  issuerRef:
+    name: letsencrypt-prod
+  dnsNames:
+  - blogitapp.ddnsking.com
+  - www.blogitapp.ddnsking.com
