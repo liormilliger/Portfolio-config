@@ -3,9 +3,9 @@ kind: Application
 metadata:
   name: prometheus-stack
   namespace: argocd
-  # annotations:
+  annotations:
   #   argocd.argoproj.io/hook: Sync
-  #   argocd.argoproj.io/sync-wave: "1"
+    argocd.argoproj.io/sync-wave: "1"
 spec:
   project: default
   sources:
@@ -25,7 +25,7 @@ spec:
   syncPolicy:
     syncOptions:
     - CreateNamespace=true
-    - ServerSideApply=true
+    # - ServerSideApply=true
     automated:
       selfHeal: true
       prune: true
