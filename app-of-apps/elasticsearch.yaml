@@ -1,27 +1,27 @@
-apiVersion: argoproj.io/v1alpha1
-kind: Application
-metadata:
-  name: elasticsearch
-  namespace: argocd
-spec:
-  project: default
-  sources:
-    - repoURL: https://charts.bitnami.com/bitnami
-      targetRevision: "19.14.1"
-      chart: elasticsearch
-      helm:
-        valueFiles:
-        - $values/app-of-apps/files/my-es-values.yml
-    - repoURL: git@github.com:liormilliger/Portfolio-config.git
-      targetRevision: HEAD
-      ref: values
-  destination: 
-    server: https://kubernetes.default.svc
-    namespace: elastic
+# apiVersion: argoproj.io/v1alpha1
+# kind: Application
+# metadata:
+#   name: elasticsearch
+#   namespace: argocd
+# spec:
+#   project: default
+#   sources:
+#     - repoURL: https://charts.bitnami.com/bitnami
+#       targetRevision: "19.14.1"
+#       chart: elasticsearch
+#       helm:
+#         valueFiles:
+#         - $values/app-of-apps/files/my-es-values.yml
+#     - repoURL: git@github.com:liormilliger/Portfolio-config.git
+#       targetRevision: HEAD
+#       ref: values
+#   destination: 
+#     server: https://kubernetes.default.svc
+#     namespace: elastic
 
-  syncPolicy:
-    syncOptions:
-    - CreateNamespace=true
-    automated:
-      selfHeal: true
-      prune: true
+#   syncPolicy:
+#     syncOptions:
+#     - CreateNamespace=true
+#     automated:
+#       selfHeal: true
+#       prune: true
