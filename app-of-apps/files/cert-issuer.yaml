@@ -27,7 +27,7 @@ metadata:
     # argocd.argoproj.io/hook: PostSync
     # argocd.argoproj.io/sync-wave: "1"
 spec:
-  secretName: liorm-portfolio-tls-secret
+  secretName: liorm-portfolio-tls
   issuerRef:
     name: letsencrypt-prod
   dnsNames:

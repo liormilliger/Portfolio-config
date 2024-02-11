@@ -15,7 +15,7 @@ spec:
   - hosts:
     - blogitapp.ddnsking.com
     - www.blogitapp.ddnsking.com
-    secretName: liorm-portfolio-tls-secret
+    secretName: liorm-portfolio-tls
   rules:
   - host: blogitapp.ddnsking.com
     http:
