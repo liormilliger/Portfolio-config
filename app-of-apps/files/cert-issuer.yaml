@@ -32,4 +32,3 @@ spec:
     name: letsencrypt-prod
   dnsNames:
   - blogitapp.ddnsking.com
-  - www.blogitapp.ddnsking.com
