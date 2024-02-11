@@ -3,7 +3,7 @@ kind: Application
 metadata:
   name: prometheus-stack
   namespace: argocd
-  annotations:
+  # annotations:
   #   argocd.argoproj.io/hook: Sync
     # argocd.argoproj.io/sync-wave: "1"
 spec:
