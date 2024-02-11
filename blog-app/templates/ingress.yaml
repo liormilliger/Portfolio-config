@@ -7,13 +7,14 @@ metadata:
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   ingressClassName: nginx
-  # tls:
-  # - hosts:
-  #   - blogitapp.ddnsking.com
-  #   secretName: some-secret
+  tls:
+  - hosts:
+    - blogitapp.ddnsking.com
+    - www.blogitapp.ddnsking.com
+    secretName: liorm-portfolio-tls-secret
   rules:
-  # - host: blogitapp.ddnsking.com
-  - http:
+  - host: blogitapp.ddnsking.com
+    http:
       paths:
       - path: /
         pathType: Prefix
