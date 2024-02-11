@@ -4,6 +4,8 @@ metadata:
   name: blog-app-ingress
   namespace: default
   annotations:
+  # for cert-manager annotation check if cluster-issuer or just issuer
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
     nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
     nginx.ingress.kubernetes.io/ssl-protocols: "TLSv1.2 TLSv1.3"
     nginx.ingress.kubernetes.io/rewrite-target: /

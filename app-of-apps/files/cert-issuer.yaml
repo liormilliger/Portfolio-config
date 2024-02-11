@@ -3,7 +3,7 @@ apiVersion: cert-manager.io/v1
 kind: Issuer
 metadata:
   name: letsencrypt-prod
-  annotations:
+  # annotations:
     # argocd.argoproj.io/hook: Sync
     # argocd.argoproj.io/sync-wave: "10"
 spec:
