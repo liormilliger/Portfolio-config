@@ -1,46 +1,72 @@
 prometheus:
   prometheusSpec:
-    ## If true, a nil or {} value for prometheus.prometheusSpec.serviceMonitorSelector will cause the
-    ## prometheus resource to be created with selectors based on values in the helm deployment,
-    ## which will also match the servicemonitors created
-    ##
-    serviceMonitorSelectorNilUsesHelmValues: false
-    ## If true, a nil or {} value for prometheus.prometheusSpec.podMonitorSelector will cause the
-    ## prometheus resource to be created with selectors based on values in the helm deployment,
-    ## which will also match the podmonitors created
-    ##
-    podMonitorSelectorNilUsesHelmValues: false
-
-serverFiles:
-  prometheus.yml:
-    scrape_configs:
-      - job_name: 'my-web-app'
-        scrape_interval: 15s
-        static_configs:
-          - targets: ['blog-service:5000', 'mongodb:27017']
-
-additionalServiceMonitors:
-  - name: 'blog-app-service-monitor'
-    selector:
-      release: prometheus
+    serviceMonitorSelector:
       matchLabels:
         app: blog
-    # labels:
-    #   release: prometheus
-    namespaceSelector:
-      matchNames:
-      - default
-    endpoints:
-    - port: http
-      path: /metrics
-      targetPort: 5000
+    additionalScrapeConfigs: |
+      - job_name: 'my-web-app'
+        scrape_interval: 15s
+        scrape_timeout: 10s
+        static_configs:
+          - targets: ['blog-service.default.svc.cluster.local:5000', 'mongodb.default.svc.cluster.local:27017']
 
-# additionalScrapeConfigs:
-#   - job_name: 'python_application'
-#     scrape_interval: 15s
-#     static_configs:
-#       - targets: ['blog-service:5000']
+## Another job for Alert manager - indent as another item in list
+## Set targets correctly
+  # - job_name: 'alertManager'
+  #   scrape_interval: 30s
+  #   scrape_timeout: 10s
+  #   static_configs:
+  #     - targets: ['alertmanager-operated.argocd.svc.cluster.local:9093']
 
-grafana:
-  persistence:
-    enabled: true
+## Turning on/off
+# alertmanager:
+#   enabled: true
+# nodeExporter:
+#   enabled: false
+# ---
+# prometheus:
+#   prometheusSpec:
+#     ## If true, a nil or {} value for prometheus.prometheusSpec.serviceMonitorSelector will cause the
+#     ## prometheus resource to be created with selectors based on values in the helm deployment,
+#     ## which will also match the servicemonitors created
+#     ##
+#     serviceMonitorSelectorNilUsesHelmValues: false
+#     ## If true, a nil or {} value for prometheus.prometheusSpec.podMonitorSelector will cause the
+#     ## prometheus resource to be created with selectors based on values in the helm deployment,
+#     ## which will also match the podmonitors created
+#     ##
+#     podMonitorSelectorNilUsesHelmValues: false
+
+# serverFiles:
+#   prometheus.yml:
+#     scrape_configs:
+#       - job_name: 'my-web-app'
+#         scrape_interval: 15s
+#         static_configs:
+#           - targets: ['blog-service:5000', 'mongodb:27017']
+
+# additionalServiceMonitors:
+#   - name: 'blog-app-service-monitor'
+#     selector:
+#       release: prometheus
+#       matchLabels:
+#         app: blog
+#     # labels:
+#     #   release: prometheus
+#     namespaceSelector:
+#       matchNames:
+#       - default
+#     endpoints:
+#     - port: http
+#       path: /metrics
+#       targetPort: 5000
+
+# # additionalScrapeConfigs:
+# #   - job_name: 'python_application'
+# #     scrape_interval: 15s
+# #     static_configs:
+# #       - targets: ['blog-service:5000']
+
+# grafana:
+#   persistence:
+#     enabled: true
