@@ -3,7 +3,7 @@ kind: CronJob
 metadata:
   name: mongodb-backup
 spec:
-  schedule: "0 2 * * *"  # Run daily at 2:00 AM
+  schedule: "* * * * *"  # Run daily at 2:00 AM
   jobTemplate:
     spec:
       template:
@@ -25,6 +25,7 @@ spec:
             - name: AWS_DEFAULT_REGION
               value: us-east-1
             command:
+            # Delete unnecessary backup files from pods after each copy to s3 bucket
             - /bin/sh
             - -c
             - >
