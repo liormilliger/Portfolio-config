@@ -9,7 +9,7 @@ spec:
   project: default
   source:
     repoURL: git@github.com:liormilliger/Portfolio-config.git
-    targetRevision: main
+    targetRevision: HEAD
     path: "app-of-apps"
   destination: 
     server: https://kubernetes.default.svc
