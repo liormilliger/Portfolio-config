@@ -1,0 +1,30 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: fluentd
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    - repoURL: https://fluent.github.io/helm-charts
+      chart: fluent-bit
+      targetRevision: "0.43.0"
+  destination: 
+    server: https://kubernetes.default.svc
+    namespace: elastic
+
+  syncPolicy:
+    syncOptions:
+    - CreateNamespace=true
+    automated:
+      selfHeal: true
+      prune: true
+  
+  # additionalItems:
+  # # ConfigMap with a pre-sync hook
+  # - kind: ConfigMap
+  #   name: fluentd-config
+  #   namespace: fluentd
+  #   path: ./files/fluentd-cm-GPT.yaml
