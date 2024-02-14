@@ -13,7 +13,7 @@ spec:
         valueFiles:
         - $values/app-of-apps/files/my-es-values.yml
     - repoURL: git@github.com:liormilliger/Portfolio-config.git
-      targetRevision: logs
+      targetRevision: HEAD
       ref: values
   destination: 
     server: https://kubernetes.default.svc
