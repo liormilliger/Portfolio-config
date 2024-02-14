@@ -15,7 +15,7 @@ spec:
         valueFiles:
         - $values/app-of-apps/files/fluentbit-values.yaml
     - repoURL: git@github.com:liormilliger/Portfolio-config.git
-      targetRevision: HEAD
+      targetRevision: logs
       ref: values
   destination: 
     server: https://kubernetes.default.svc
