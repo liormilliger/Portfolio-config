@@ -49,18 +49,16 @@ config:
     [OUTPUT]
         Name es
         Match kube.*
-        Type _doc
         Host elasticsearch
         Port 9200
-        Logstash_Format On
+        Logstash_Format Off
         Retry_Limit False
 
     [OUTPUT]
         Name es
         Match host.*
-        type _doc
         Host elasticsearch
         Port 9200
-        Logstash_Format On
+        Logstash_Format Off
         Logstash_Prefix node
         Retry_Limit False
