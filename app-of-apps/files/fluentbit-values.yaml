@@ -51,8 +51,6 @@ config:
         Match kube.*
         Host elasticsearch
         Port 9200
-        tls.Off
-        tls.verify Off
         Logstash_Format On
         Retry_Limit False
 
@@ -61,8 +59,6 @@ config:
         Match host.*
         Host elasticsearch
         Port 9200
-        tls.Off
-        tls.verify Off
         Logstash_Format On
         Logstash_Prefix node
         Retry_Limit False
