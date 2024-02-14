@@ -11,9 +11,9 @@ spec:
     - repoURL: https://fluent.github.io/helm-charts
       chart: fluent-bit
       targetRevision: "0.43.0"
-        helm:
-          valueFiles:
-          - $values/app-of-apps/files/fluentbit-cm.yaml
+      helm:
+        valueFiles:
+        - $values/app-of-apps/files/fluentbit-cm.yaml
     - repoURL: git@github.com:liormilliger/Portfolio-config.git
       targetRevision: HEAD
       ref: values
