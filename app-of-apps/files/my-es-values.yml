@@ -8,7 +8,7 @@ global:
   kibanaEnabled: true
 
 master:
-  masterOnly: true
+  masterOnly: false
   replicaCount: 1
 data:
   replicaCount: 0
@@ -19,7 +19,7 @@ ingest:
 # Kibana values (subchart)
 kibana:
   service:
-    name: elasticsearch-kibana
+    # name: elasticsearch-kibana
     ## @param service.ports.http Kubernetes Service port
     ##
     ports:
