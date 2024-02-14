@@ -1,14 +1,3 @@
-# Kibana values (subchart)
-kibana:
-  service:
-    ## @param service.ports.http Kubernetes Service port
-    ##
-    ports:
-      http: 5601
-    ## @param service.type Kubernetes Service type
-    ##
-    type: ClusterIP
-
 # Elasticsearch values
 global:
   elasticsearch:
@@ -19,7 +8,7 @@ global:
   kibanaEnabled: true
 
 master:
-  masterOnly: false
+  masterOnly: true
   replicaCount: 1
 data:
   replicaCount: 0
@@ -27,8 +16,18 @@ coordinating:
   replicaCount: 0
 ingest:
   replicaCount: 0
-
-# sysctlImage:
-#   ## Enable kernel settings modifier image - not available in GKE Autopilot
-#   ## See https://www.elastic.co/guide/en/cloud-on-k8s/master/k8s-virtual-memory.html
-#   enabled: true
+# Kibana values (subchart)
+kibana:
+  service:
+    name: elasticsearch-kibana
+    ## @param service.ports.http Kubernetes Service port
+    ##
+    ports:
+      http: 5601
+    ## @param service.type Kubernetes Service type
+    ##
+    type: ClusterIP
+sysctlImage:
+  ## Enable kernel settings modifier image - not available in GKE Autopilot
+  ## See https://www.elastic.co/guide/en/cloud-on-k8s/master/k8s-virtual-memory.html
+  enabled: true
