@@ -8,9 +8,9 @@ metadata:
 spec:
   project: default
   source:
-    - repoURL: https://fluent.github.io/helm-charts
-      chart: fluent-bit
-      targetRevision: "0.43.0"
+    repoURL: https://fluent.github.io/helm-charts
+    chart: fluent-bit
+    targetRevision: "0.43.0"
   destination: 
     server: https://kubernetes.default.svc
     namespace: elastic
