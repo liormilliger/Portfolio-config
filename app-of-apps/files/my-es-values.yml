@@ -11,6 +11,11 @@ kibana:
 
 # Elasticsearch values
 global:
+  elasticsearch:
+    service:
+      name: elasticsearch
+      ports:
+        restAPI: 9200
   kibanaEnabled: true
 
 master:
@@ -23,7 +28,7 @@ coordinating:
 ingest:
   replicaCount: 0
 
-sysctlImage:
-  ## Enable kernel settings modifier image - not available in GKE Autopilot
-  ## See https://www.elastic.co/guide/en/cloud-on-k8s/master/k8s-virtual-memory.html
-  enabled: true
+# sysctlImage:
+#   ## Enable kernel settings modifier image - not available in GKE Autopilot
+#   ## See https://www.elastic.co/guide/en/cloud-on-k8s/master/k8s-virtual-memory.html
+#   enabled: true
