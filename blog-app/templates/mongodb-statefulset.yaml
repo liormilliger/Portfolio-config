@@ -47,10 +47,10 @@ spec:
   # - metadata:
   #     name: {{ .Values.mongodb.mongoPV }}
   #   spec:
-  #     storageClassName: standard
+  #     storageClassName: gp2
   #     accessModes:
   #       - ReadWriteMany
   #     resources:
   #       requests:
-  #         storage: 150Mi
+  #         storage: 2Gi
 
