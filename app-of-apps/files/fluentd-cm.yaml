@@ -2,7 +2,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: fluentd-config
-  namespace: fluentd
+  namespace: elastic
   # annotations:
   #   argocd.argoproj.io/hook: PreSync
 data:
@@ -69,35 +69,35 @@ data:
       @type null
     </match>
 
-    # <match **>
-    #   @type elasticsearch
-    #   @log_level info
-    #   host elasticsearch.elastic.svc.cluster.local
-    #   port 9200
-    #   scheme http
-    #   index_name fluentd
-    #   type_name _doc
-    #   logstash_format true
-    #   logstash_prefix logstash
-    #   include_tag_key true
-    #   tag_key @log_name
-    #   reconnect_on_error true
-    #   <buffer>
-    #     @type file
-    #     path /var/log/fluentd-buffers/kubernetes.system.buffer
-    #     flush_mode interval
-    #     retry_type exponential_backoff
-    #     flush_thread_count 2
-    #     flush_interval 5s
-    #     retry_forever
-    #     retry_max_interval 30
-    #     chunk_limit_size 2M
-    #     queue_limit_length 8
-    #     overflow_action block
-    #   </buffer>
-    # </match>
-
     <match **>
-      @type stdout
+      @type elasticsearch
+      @log_level info
+      host elasticsearch
+      port 9200
+      scheme http
+      index_name fluentd
+      type_name _doc
+      logstash_format true
+      logstash_prefix logstash
+      include_tag_key true
+      tag_key @log_name
+      reconnect_on_error true
+      <buffer>
+        @type file
+        path /var/log/fluentd-buffers/kubernetes.system.buffer
+        flush_mode interval
+        retry_type exponential_backoff
+        flush_thread_count 2
+        flush_interval 5s
+        retry_forever
+        retry_max_interval 30
+        chunk_limit_size 2M
+        queue_limit_length 8
+        overflow_action block
+      </buffer>
     </match>
+
+    # <match **>
+    #   @type stdout
+    # </match>
 
