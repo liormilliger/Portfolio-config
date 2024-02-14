@@ -4,8 +4,8 @@
 # metadata:
 #   name: letsencrypt-prod
 #   annotations:
-#     argocd.argoproj.io/hook: Sync
-#     argocd.argoproj.io/sync-wave: "10"
+#     # argocd.argoproj.io/hook: Sync
+#     # argocd.argoproj.io/sync-wave: "5"
 # spec:
 #   acme:
 #     server: https://acme-v02.api.letsencrypt.org/directory
@@ -22,14 +22,13 @@
 # apiVersion: cert-manager.io/v1
 # kind: Certificate
 # metadata:
-#   name: mydomain-tls
+#   name: liorm-portfolio-tls
 #   # annotations:
 #     # argocd.argoproj.io/hook: PostSync
-#     # argocd.argoproj.io/sync-wave: "1"
+#     # argocd.argoproj.io/sync-wave: "10"
 # spec:
-#   secretName: mydomain-tls-secret
+#   secretName: liorm-portfolio-tls-secret
 #   issuerRef:
 #     name: letsencrypt-prod
 #   dnsNames:
 #   - blogitapp.ddnsking.com
-#   - www.blogitapp.ddnsking.com
