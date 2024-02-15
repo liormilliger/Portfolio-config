@@ -51,6 +51,7 @@ config:
         Match kube.*
         Host elasticsearch
         Port 9200
+        Type _doc
         Retry_Limit False
 # Logstash_Format Off
 
