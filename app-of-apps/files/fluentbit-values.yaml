@@ -53,6 +53,8 @@ config:
         Port 9200
         Type doc
         Retry_Limit False
+        Suppress_Type_Name On
+
 # Logstash_Format Off
 
 # [OUTPUT]
