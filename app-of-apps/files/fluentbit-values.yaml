@@ -28,7 +28,7 @@ config:
         Name tail
         Path /var/log/containers/*blog*.log
         multiline.parser docker, cri
-        Tag kube.*
+        Tag blog
         Mem_Buf_Limit 100MB
         Skip_Long_Lines On
 
@@ -40,25 +40,25 @@ config:
   filters: |
     [FILTER]
         Name kubernetes
-        Match kube.*
+        Match blog
         Merge_Log On
         Keep_Log Off
         K8S-Logging.Parser On
         K8S-Logging.Exclude On
   outputs: |
     [OUTPUT]
-        Name es
-        Match kube.*
+        Name stdout
+        Match blog
         Host elasticsearch
         Port 9200
         Logstash_Format Off
         Retry_Limit False
 
-    [OUTPUT]
-        Name es
-        Match host.*
-        Host elasticsearch
-        Port 9200
-        Logstash_Format Off
-        Logstash_Prefix node
-        Retry_Limit False
+# [OUTPUT]
+#     Name es
+#     Match host.*
+#     Host elasticsearch
+#     Port 9200
+#     Logstash_Format Off
+#     Logstash_Prefix node
+#     Retry_Limit False
