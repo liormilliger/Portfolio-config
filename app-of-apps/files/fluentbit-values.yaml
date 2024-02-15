@@ -51,8 +51,8 @@ config:
         Match blog
         Host elasticsearch
         Port 9200
-        Logstash_Format Off
         Retry_Limit False
+# Logstash_Format Off
 
 # [OUTPUT]
 #     Name es
