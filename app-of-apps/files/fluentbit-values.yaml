@@ -47,7 +47,7 @@ config:
         K8S-Logging.Exclude On
   outputs: |
     [OUTPUT]
-        Name stdout
+        Name es
         Match kube.*
         Host elasticsearch
         Port 9200
