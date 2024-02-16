@@ -1,21 +1,30 @@
 # Elasticsearch values
 global:
   elasticsearch:
+    master:
+      masterOnly: false
+      replicaCount: 1
+    data:
+      replicaCount: 0
+    coordinating:
+      replicaCount: 0
+    ingest:
+      replicaCount: 0
     service:
       name: elasticsearch
       ports:
         restAPI: 9200
   kibanaEnabled: true
 
-master:
-  masterOnly: false
-  replicaCount: 1
-data:
-  replicaCount: 0
-coordinating:
-  replicaCount: 0
-ingest:
-  replicaCount: 0
+# master:
+#   masterOnly: false
+#   replicaCount: 1
+# data:
+#   replicaCount: 0
+# coordinating:
+#   replicaCount: 0
+# ingest:
+#   replicaCount: 0
 # Kibana values (subchart)
 kibana:
   service:
