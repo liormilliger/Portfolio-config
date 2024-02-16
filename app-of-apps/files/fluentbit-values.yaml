@@ -1,12 +1,5 @@
 ## https://docs.fluentbit.io/manual/administration/configuring-fluent-bit/classic-mode/configuration-file
 config:
-  # custom_parsers.conf: |
-  #   [PARSER]
-  #       Name docker_no_time
-  #       Format json
-  #       Time_Keep Off
-  #       Time_Key time
-  #       Time_Format %Y-%m-%dT%H:%M:%S.%L
   service: |
     [SERVICE]
         Daemon Off
@@ -55,13 +48,12 @@ config:
         Retry_Limit False
         Suppress_Type_Name On
 
-# Logstash_Format Off
-
+## Optional for system logs
 # [OUTPUT]
 #     Name es
 #     Match host.*
 #     Host elasticsearch
 #     Port 9200
-#     Logstash_Format Off
-#     Logstash_Prefix node
-#     Retry_Limit False
+    # Type doc
+    # Retry_Limit False
+    # Suppress_Type_Name On
