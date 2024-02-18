@@ -13,10 +13,10 @@ spec:
   ingressClassName: nginx
   tls:
   - hosts:
-    - blogitapp.ddnsking.com
+    - {{ .Values.blogapp.appDNS }}
     secretName: liorm-portfolio-tls
   rules:
-  - host: blogitapp.ddnsking.com
+  - host: {{ .Values.blogapp.appDNS }}
     http:
       paths:
       - path: /

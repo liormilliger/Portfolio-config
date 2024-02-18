@@ -25,4 +25,4 @@ spec:
   issuerRef:
     name: letsencrypt-prod
   dnsNames:
-  - blogitapp.ddnsking.com
+  - blogitapp.myddns.me
