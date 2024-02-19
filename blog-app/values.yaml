@@ -3,17 +3,15 @@ blogapp:
   appPort: 5000
   appPortName: webapp
   appSvcName: blog-service
-  appImage: 644435390668.dkr.ecr.us-east-1.amazonaws.com/liorm-portfolio:1.0.109
+  appImage: 644435390668.dkr.ecr.us-east-1.amazonaws.com/liorm-portfolio:1.0.9
   appDNS: blogitapp.myddns.me
 mongodb:
   mongoApp: mongo
   mongoSvc: mongodb
   mongoPort: 27017
   mongoPV: mongo-data
-
 configmap:
   cmName: blog-conf
-
 mongopv:
   volSize: "150Mi"
   scType: gp2
