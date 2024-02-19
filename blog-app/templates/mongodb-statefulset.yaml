@@ -50,7 +50,7 @@ spec:
       name: {{ .Values.mongodb.mongoPV }}
     spec:
       storageClassName: gp2
-      accessModes: ["ReadWriteOnce"]
+      accessModes: ["ReadWriteMany"]
       resources:
         requests:
           storage: 8Gi
