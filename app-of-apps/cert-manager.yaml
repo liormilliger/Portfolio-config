@@ -12,18 +12,11 @@ spec:
     helm:
       valuesObject:
         installCRDs: true
-    #     valueFiles:
-    #     - $values/app-of-apps/files/cert-values.yaml
-    # - repoURL: git@github.com:liormilliger/Portfolio-config.git
-    #   targetRevision: HEAD
-    #   ref: values
   destination: 
     server: https://kubernetes.default.svc
     namespace: default
 
   syncPolicy:
-    syncOptions:
-    - CreateNamespace=true
     automated:
       selfHeal: true
       prune: true

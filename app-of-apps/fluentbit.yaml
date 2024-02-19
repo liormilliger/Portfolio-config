@@ -27,10 +27,4 @@ spec:
     automated:
       selfHeal: true
       prune: true
-  
-  # additionalItems:
-  # # ConfigMap with a pre-sync hook
-  # - kind: ConfigMap
-  #   name: fluentd-config
-  #   namespace: fluentd
-  #   path: ./files/fluentd-cm-GPT.yaml
+

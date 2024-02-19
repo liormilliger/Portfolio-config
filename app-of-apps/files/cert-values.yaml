@@ -1,2 +1,0 @@
-# See Getting Started: https://cert-manager.io/docs/tutorials/acme/nginx-ingress/
-installCRDs: true 
