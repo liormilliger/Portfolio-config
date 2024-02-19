@@ -42,17 +42,17 @@ spec:
       - name: init-database
         configMap:
           name: mongo-init-script
-      # - name: {{ .Values.mongodb.mongoPV }}
-      #   persistentVolumeClaim:
-      #     claimName: mongo-pvc
-  volumeClaimTemplates:
-  - metadata:
-      name: {{ .Values.mongodb.mongoPV }}
-    spec:
-      storageClassName: gp2
-      accessModes:
-        - ReadWriteOnce
-      resources:
-        requests:
-          storage: 3Gi
+      - name: {{ .Values.mongodb.mongoPV }}
+        persistentVolumeClaim:
+          claimName: mongo-pvc
+  # volumeClaimTemplates:
+  # - metadata:
+  #     name: {{ .Values.mongodb.mongoPV }}
+  #   spec:
+  #     storageClassName: gp2
+  #     accessModes:
+  #       - ReadWriteOnce
+  #     resources:
+  #       requests:
+  #         storage: 3Gi
 
