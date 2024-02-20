@@ -21,7 +21,7 @@ spec:
         - name: init-script
           mountPath: "/config"
           readOnly: true
-        - name: init-script
+        - name: init-database
           mountPath: "/docker-entrypoint-initdb.d/"
       containers:
       - name: {{ .Values.mongodb.mongoApp }}
@@ -41,7 +41,7 @@ spec:
       - name: init-database
         configMap:
           name: mongo-init-script
-      - name: init-scrip
+      - name: init-script
         configMap:
           name: mongo-init-script
   volumeClaimTemplates:
