@@ -35,9 +35,9 @@ spec:
   - metadata:
       name: {{ .Values.mongodb.mongoPV }}
     spec:
-      storageClassName: gp2-csi-driver
+      storageClassName: {{ .Values.mongopv.scType }}
       accessModes: ["ReadWriteOnce"]
       resources:
         requests:
-          storage: 8Gi
+          storage: {{ .Values.mongopv.volSize }}
 
