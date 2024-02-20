@@ -16,11 +16,10 @@ spec:
       initContainers:
       - name: init-config
         image: mongo:5.0
-        command: ["bash", "-c", "cp /docker-entrypoint-initdb.d/init.js /tmp/init.js && mv /tmp/init.js /docker-entrypoint-initdb.d/"]
+        command: ["bash", "-c", "cp /config/init.js /docker-entrypoint-initdb.d/init.js"]
         volumeMounts:
         - name: init-config-volume
-          mountPath: "/docker-entrypoint-initdb.d/"
-          readOnly: true
+          mountPath: "/config"
       containers:
       - name: {{ .Values.mongodb.mongoApp }}
         image: mongo:5.0
