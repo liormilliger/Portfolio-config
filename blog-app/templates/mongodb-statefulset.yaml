@@ -18,11 +18,9 @@ spec:
         image: mongo:5.0
         command: ["bash", "-c", "cp /docker-entrypoint-initdb.d/init.js /docker-entrypoint-initdb.d/"]
         volumeMounts:
-        - name: init-script
-          mountPath: "/config"
-          readOnly: true
-        - name: init-database
+        - name: init-config-volume
           mountPath: "/docker-entrypoint-initdb.d/"
+          readOnly: true
       containers:
       - name: {{ .Values.mongodb.mongoApp }}
         image: mongo:5.0
@@ -35,13 +33,8 @@ spec:
         volumeMounts:
         - name: {{ .Values.mongodb.mongoPV }}
           mountPath: /data/db
-        - name: init-database
-          mountPath: "/docker-entrypoint-initdb.d/"
       volumes:
-      - name: init-database
-        configMap:
-          name: mongo-init-script
-      - name: init-script
+      - name: init-config-volume
         configMap:
           name: mongo-init-script
   volumeClaimTemplates:
