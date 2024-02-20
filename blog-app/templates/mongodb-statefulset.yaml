@@ -15,6 +15,7 @@ spec:
     spec:
       initContainers:
       - name: init-config
+        image: mongo:5.0
         command: ["bash", "-c", "cp /config/init.js /docker-entrypoint-initdb.d/"]
         volumeMounts:
         - name: init-script
