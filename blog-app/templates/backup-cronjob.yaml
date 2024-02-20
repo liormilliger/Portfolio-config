@@ -1,35 +1,35 @@
-apiVersion: batch/v1
-kind: CronJob
-metadata:
-  name: mongodb-backup
-spec:
-  schedule: "0 2 * * *"  # Run daily at 2:00 AM
-  jobTemplate:
-    spec:
-      template:
-        spec:
-          containers:
-          - name: mongodb-backup
-            image: amazon/aws-cli  # Using AWS CLI image as base
-            env:
-            - name: AWS_ACCESS_KEY_ID
-              valueFrom:
-                secretKeyRef:
-                  name: aws-secret  # Assuming a Kubernetes secret named 'aws-secret'
-                  key: key_id
-            - name: AWS_SECRET_ACCESS_KEY
-              valueFrom:
-                secretKeyRef:
-                  name: aws-secret
-                  key: access_key
-            - name: AWS_DEFAULT_REGION
-              value: us-east-1
-            command:
-            # Delete unnecessary backup files from pods after each copy to s3 bucket
-            - /bin/sh
-            - -c
-            - >
-              kubectl exec mongo-0 -- mongodump --db blog --collection blog --username root --password password --authenticationDatabase admin --archive=/tmp/blog_backup.gz --gzip &&
-              kubectl cp mongo-0:/tmp/blog_backup.gz /tmp/blog_backup.gz &&
-              aws s3 cp /tmp/blog_backup.gz s3://liorm-portfolio-tfstate-s3/db-backup/blog_backup_$(date +%Y%m%d).gz
-          restartPolicy: OnFailure
+# apiVersion: batch/v1
+# kind: CronJob
+# metadata:
+#   name: mongodb-backup
+# spec:
+#   schedule: "0 2 * * *"  # Run daily at 2:00 AM
+#   jobTemplate:
+#     spec:
+#       template:
+#         spec:
+#           containers:
+#           - name: mongodb-backup
+#             image: amazon/aws-cli  # Using AWS CLI image as base
+#             env:
+#             - name: AWS_ACCESS_KEY_ID
+#               valueFrom:
+#                 secretKeyRef:
+#                   name: aws-secret  # Assuming a Kubernetes secret named 'aws-secret'
+#                   key: key_id
+#             - name: AWS_SECRET_ACCESS_KEY
+#               valueFrom:
+#                 secretKeyRef:
+#                   name: aws-secret
+#                   key: access_key
+#             - name: AWS_DEFAULT_REGION
+#               value: us-east-1
+#             command:
+#             # Delete unnecessary backup files from pods after each copy to s3 bucket
+#             - /bin/sh
+#             - -c
+#             - >
+#               kubectl exec mongo-0 -- mongodump --db blog --collection blog --username root --password password --authenticationDatabase admin --archive=/tmp/blog_backup.gz --gzip &&
+#               kubectl cp mongo-0:/tmp/blog_backup.gz /tmp/blog_backup.gz &&
+#               aws s3 cp /tmp/blog_backup.gz s3://liorm-portfolio-tfstate-s3/db-backup/blog_backup_$(date +%Y%m%d).gz
+#           restartPolicy: OnFailure
