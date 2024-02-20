@@ -22,7 +22,7 @@ with app files, Jenkinsfile for CI, Dockerfiles and docker-compose file for loca
 ## Full Deployment Workflow Chart
 
 
-![App-workflow-latest](https://github.com/liormilliger/Portfolio-config/assets/64707466/ee3ab91f-108a-4a7f-8840-5dfbd324e549)
+![App-workflow-latest (1)](https://github.com/liormilliger/Portfolio-config/assets/64707466/78b78a29-ac85-498a-b6bb-9243e678f06d)
 
 
 ## Prerequisites
