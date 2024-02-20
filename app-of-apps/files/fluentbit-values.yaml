@@ -25,11 +25,6 @@ config:
         Mem_Buf_Limit 100MB
         Skip_Long_Lines On
 
-    [INPUT]
-        Name systemd
-        Tag host.*
-        Systemd_Filter _SYSTEMD_UNIT=kubelet.service
-        Read_From_Tail On
   filters: |
     [FILTER]
         Name kubernetes
@@ -48,11 +43,3 @@ config:
         Retry_Limit False
         Suppress_Type_Name On
 
-    [OUTPUT]
-        Name es
-        Match host.*
-        Host elasticsearch
-        Port 9200
-        Type doc
-        Retry_Limit False
-        Suppress_Type_Name On
