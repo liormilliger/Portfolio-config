@@ -13,6 +13,15 @@ spec:
       labels:
         app: {{ .Values.mongodb.mongoApp }}
     spec:
+      initContainers:
+      - name: init-config
+        command: ["bash", "-c", "cp /config/init.js /docker-entrypoint-initdb.d/"]
+        volumeMounts:
+        - name: init-script
+          mountPath: "/config"
+          readOnly: true
+        - name: init-script
+          mountPath: "/docker-entrypoint-initdb.d/"
       containers:
       - name: {{ .Values.mongodb.mongoApp }}
         image: mongo:5.0
@@ -31,6 +40,9 @@ spec:
       - name: init-database
         configMap:
           name: mongo-init-script
+      - name: init-scrip
+        configMap:
+          name: mongo-init-script
   volumeClaimTemplates:
   - metadata:
       name: {{ .Values.mongodb.mongoPV }}
@@ -40,4 +52,3 @@ spec:
       resources:
         requests:
           storage: {{ .Values.mongopv.volSize }}
-
