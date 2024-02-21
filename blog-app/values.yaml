@@ -4,7 +4,7 @@ blogapp:
   appPortName: webapp
   appSvcName: blog-service
   appImage: 644435390668.dkr.ecr.us-east-1.amazonaws.com/liorm-portfolio:1.0.20
-  appDNS: blogitapp.myddns.me
+  appDNS: blogitapp.ddnsking.com
 mongodb:
   mongoApp: mongo
   mongoSvc: mongodb
