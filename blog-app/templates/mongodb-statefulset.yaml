@@ -16,7 +16,7 @@ spec:
       initContainers:
       - name: init-mongodb
         image: mongo:5.0
-        command: ["mongo", "mongodb://localhost:27017/blog", "/init.js"]
+        command: ["mongo", "mongodb://mongodb.default.svc.cluster.local:27017/blog", "/init.js"]
         volumeMounts:
         - name: init-script
           mountPath: /init.js
