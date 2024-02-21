@@ -16,11 +16,10 @@ spec:
       initContainers:
       - name: init-mongodb
         image: mongo:5.0
-        command: ["mongo", "mongodb://mongodb.default.svc.cluster.local:27017/blog", "/init.js"]
         volumeMounts:
         - name: init-script
-          mountPath: /init.js
-          subPath: init.js
+          mountPath: /docker-entrypoint-initdb.d/
+          # subPath: init.js
       containers:
       - name: {{ .Values.mongodb.mongoApp }}
         image: mongo:5.0
