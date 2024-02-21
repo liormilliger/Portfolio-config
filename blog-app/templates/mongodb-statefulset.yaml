@@ -13,6 +13,14 @@ spec:
       labels:
         app: {{ .Values.mongodb.mongoApp }}
     spec:
+      initContainers:
+      - name: init-mongodb
+        image: mongo:5.0
+        command: ["mongo", "mongodb://localhost:27017/blog", "/init.js"]
+        volumeMounts:
+        - name: init-script
+          mountPath: /init.js
+          subPath: init.js
       containers:
       - name: {{ .Values.mongodb.mongoApp }}
         image: mongo:5.0
@@ -25,16 +33,12 @@ spec:
         volumeMounts:
         - name: {{ .Values.mongodb.mongoPV }}
           mountPath: /data/db
-        - name: init-database
-          mountPath: "/docker-entrypoint-initdb.d/"
+        # - name: init-database
+        #   mountPath: "/docker-entrypoint-initdb.d/"
       volumes:
-      - name: init-database
+      - name: init-script
         configMap:
           name: mongo-init-script
-      - name: {{ .Values.mongodb.mongoPV }}
-        persistentVolumeClaim:
-          claimName: {{ .Values.mongodb.mongoPV }}
-
   volumeClaimTemplates:
   - metadata:
       name: {{ .Values.mongodb.mongoPV }}
