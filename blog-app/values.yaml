@@ -13,7 +13,7 @@ mongodb:
 configmap:
   cmName: blog-conf
 mongopv:
-  volSize: "8Gi"
-  scType: gp2-csi-driver
+  volSize: "500Mi"
+  scType: gp2
   accessMode: ReadWriteOnce
 Replicas: 1
