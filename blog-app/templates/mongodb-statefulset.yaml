@@ -16,12 +16,9 @@ spec:
       initContainers:
       - name: init-config
         image: mongo:5.0
-        command: ["bash", "-c", "cp /config/init.js /tmp/init.js && cp /tmp/init.js /docker-entrypoint-initdb.d/init.js"]
         volumeMounts:
         - name: init-config-volume
-          mountPath: "/config"
-        - name: init-temp
-          mountPath: "/tmp"
+          mountPath: "/docker-entrypoint-initdb.d/"
       containers:
       - name: {{ .Values.mongodb.mongoApp }}
         image: mongo:5.0
@@ -38,8 +35,6 @@ spec:
       - name: init-config-volume
         configMap:
           name: mongo-init-script
-      - name: init-temp
-        emptyDir: {}
   volumeClaimTemplates:
   - metadata:
       name: {{ .Values.mongodb.mongoPV }}

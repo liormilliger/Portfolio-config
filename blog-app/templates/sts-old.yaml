@@ -1,0 +1,49 @@
+# apiVersion: apps/v1
+# kind: StatefulSet
+# metadata:
+#   name: {{ .Values.mongodb.mongoApp }}
+# spec:
+#   selector:
+#     matchLabels:
+#       app: {{ .Values.mongodb.mongoApp }}
+#   serviceName: {{ .Values.mongodb.mongoSvc }}
+#   replicas: 1
+#   template:
+#     metadata:
+#       labels:
+#         app: {{ .Values.mongodb.mongoApp }}
+#     spec:
+#       containers:
+#       - name: {{ .Values.mongodb.mongoApp }}
+#         image: mongo:5.0
+#         ports:
+#         - containerPort: {{ .Values.mongodb.mongoPort }}
+#           name: {{ .Values.mongodb.mongoApp }}
+#         envFrom:
+#         - secretRef:
+#             name: mongo-secrets
+
+#         volumeMounts:
+#         - name: {{ .Values.mongodb.mongoPV }}
+#           mountPath: /data/db
+#         - name: init-database
+#           mountPath: "/docker-entrypoint-initdb.d/"
+
+#       volumes:
+#       - name: init-database
+#         configMap:
+#           name: mongo-init-script
+#       - name: {{ .Values.mongodb.mongoPV }}
+#         persistentVolumeClaim:
+#           claimName: mongo-pvc
+#   # volumeClaimTemplates:
+#   # - metadata:
+#   #     name: {{ .Values.mongodb.mongoPV }}
+#   #   spec:
+#   #     storageClassName: gp2
+#   #     accessModes:
+#   #       - ReadWriteOnce
+#   #     resources:
+#   #       requests:
+#   #         storage: 3Gi
+
