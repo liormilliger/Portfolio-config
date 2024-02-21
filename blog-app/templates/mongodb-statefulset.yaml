@@ -19,14 +19,23 @@ spec:
         ports:
         - containerPort: {{ .Values.mongodb.mongoPort }}
           name: {{ .Values.mongodb.mongoApp }}
-        envFrom:
-          secretRef:
-            secret: mongo-secrets
+        env:
+        - name: MONGO_INITDB_DATABASE
+          value: blog
+        - name: MONGO_INITDB_ROOT_USERNAME
+          value: root
+        - name: MONGO_INITDB_ROOT_PASSWORD
+          value: password
         volumeMounts:
         - name: {{ .Values.mongodb.mongoPV }}
           mountPath: /data/db
         - name: init-database
           mountPath: "/docker-entrypoint-initdb.d/"
+        # command:
+        # - "mongod"
+        # - "--bind_ip_all"
+        # - "--replSet"
+        # - "demoReplSet"
       volumes:
       - name: init-database
         configMap:
@@ -34,3 +43,14 @@ spec:
       - name: {{ .Values.mongodb.mongoPV }}
         persistentVolumeClaim:
           claimName: mongo-pvc
+  # volumeClaimTemplates:
+  # - metadata:
+  #     name: {{ .Values.mongodb.mongoPV }}
+  #   spec:
+  #     storageClassName: gp2
+  #     accessModes:
+  #       - ReadWriteMany
+  #     resources:
+  #       requests:
+  #         storage: 2Gi
+
