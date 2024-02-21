@@ -13,12 +13,6 @@ spec:
       labels:
         app: {{ .Values.mongodb.mongoApp }}
     spec:
-      # initContainers:
-      # - name: init-config
-      #   image: mongo:5.0
-      #   volumeMounts:
-      #   - name: init-config-volume
-      #     mountPath: "/docker-entrypoint-initdb.d/"
       containers:
       - name: {{ .Values.mongodb.mongoApp }}
         image: mongo:5.0
@@ -30,19 +24,23 @@ spec:
             name: mongo-secrets
         volumeMounts:
         - name: {{ .Values.mongodb.mongoPV }}
+          mountPath: /data/db
+        - name: init-database
           mountPath: "/docker-entrypoint-initdb.d/"
-      # volumes:
-      # - name: init-config-volume
-      #   configMap:
-      #     name: mongo-init-script
+      volumes:
+      - name: init-database
+        configMap:
+          name: mongo-init-script
+      - name: {{ .Values.mongodb.mongoPV }}
+        persistentVolumeClaim:
+          claimName: {{ .Values.mongodb.mongoPV }}
+
   volumeClaimTemplates:
   - metadata:
       name: {{ .Values.mongodb.mongoPV }}
     spec:
       storageClassName: {{ .Values.mongopv.scType }}
       accessModes: ["ReadWriteOnce"]
-      configMap:
-        name: mongo-init-script
       resources:
         requests:
           storage: {{ .Values.mongopv.volSize }}
